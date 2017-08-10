@@ -29,11 +29,14 @@ class HomeController extends Controller
     }
 
     public function detail(){
-        $a = ['name'=>'xiaoming','sex'=>'male','age'=>'18','address'=>'beijing'];
+        $data = ['name'=>'xiaoming','sex'=>'male','age'=>'18','address'=>'beijing'];
         echo "<pre>";
-        print_r($a);
-        @extract($a);
-        echo $name;
+        print_r($data);
+
+        $b = '2';
+        $res = compact("data");
+        print_r($res);
+        print_r($res);
         echo "路由";
 
         //return view('admin.detail');

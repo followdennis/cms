@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,12 +22,16 @@ class UploadImageController extends Controller
             //这种方法，可创建文件夹
 //            Storage::disk('uploads')->put('avatars/1','dir');
 //            $path = Storage::putFile('avatars',$request->file('file1'));
-              $path = $request->file('file1')->storeAs('avatars','abc.jpg','uploads');
+              $extension = $request->file('file1')->extension();
+              $name = Carbon::now()->format('YmdHis');
+              $new_file_name = $name.'abc.'.$extension;
+              echo $new_file_name;
+              $path = $request->file('file1')->storeAs('avatars',$new_file_name,'uploads');
             echo $path;
 
         }
-        $url = Storage::disk('uploads')->url('abc.jpg');
-        echo $url;
+//        $url = Storage::disk('uploads')->url('abc.jpg');
+
 //        $size = Storage::disk('uploads')->lastModified('file.txt');
 
         return view('image.index_basic');
@@ -34,7 +39,9 @@ class UploadImageController extends Controller
 
     public function del_file(){
         //可以删除
-        Storage::delete('avatars/46Wa9M7dIOhmnn40iX5FsjTHBuohaL080sGOOVru.jpeg');
+//        Storage::delete('avatars/46Wa9M7dIOhmnn40iX5FsjTHBuohaL080sGOOVru.jpeg');
+//        Storage::deleteDirectory('avatars');
+        echo "删除文件或删除文件夹";
     }
 
     public function all_files(){

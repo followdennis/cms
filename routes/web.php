@@ -41,5 +41,10 @@ Route::any('del_file',['uses'=>'UploadImageController@del_file','as'=>'del_file'
 
 Route::any('all_files',['uses'=>'UploadImageController@all_files','as'=>'all_files']);
 
+Route::any('spider_test',['uses'=>'TestController@spider_test','as'=>'spider_test']);
+Route::any('spider',['uses'=>'TestController@spider','as'=>'spider']);
+
+Route::any('red_packet',['uses'=>'TestController@red_packet','as'=>'red_packet']);
+
 
 

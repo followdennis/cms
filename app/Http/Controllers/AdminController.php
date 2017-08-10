@@ -159,7 +159,6 @@ class AdminController extends Controller
         echo asset('storage/file.txt');
 //        Storage::disk('local')->put('file.txt','Content');
 
-
     }
 
     public function setRedis(){
