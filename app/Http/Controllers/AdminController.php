@@ -21,6 +21,20 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
+    protected  $str;
+    protected  $tmp = array(
+        array('cate_id'=>1 , 'name'=>'首页' , 'parent_id'=>'0'),
+        array('cate_id'=>2 , 'name'=>'新闻中心' , 'parent_id'=>'1'),
+        array('cate_id'=>3 , 'name'=>'娱乐新闻' , 'parent_id'=>'2'),
+        array('cate_id'=>4 , 'name'=>'军事要闻' , 'parent_id'=>'2'),
+        array('cate_id'=>5 , 'name'=>'体育新闻' , 'parent_id'=>'2'),
+        array('cate_id'=>6 , 'name'=>'博客' , 'parent_id'=>'1'),
+        array('cate_id'=>7 , 'name'=>'旅游日志' , 'parent_id'=>'6'),
+        array('cate_id'=>8 , 'name'=>'心情' , 'parent_id'=>'6'),
+        array('cate_id'=>9 , 'name'=>'小小说' , 'parent_id'=>'6'),
+        array('cate_id'=>10 , 'name'=>'明星' , 'parent_id'=>'3'),
+        array('cate_id'=>11 , 'name'=>'网红' , 'parent_id'=>'3')
+    );
     //
     public function index()
     {
@@ -71,6 +85,43 @@ class AdminController extends Controller
         return view('admin.index',['users'=>$users]);
     }
 
+    /**
+     * 生成带html标签的树形菜单
+     */
+    public function tree_html(){
+        $tmp = $this->tmp;
+        echo "<ul>
+                <li><a>一级分类</a>
+                    <ul>
+                        <li><a href='#'>二级分类</a></li>
+                    </ul>
+                </li>
+                <li><a>一级分类</a></li>
+                <li><a>一级分类</a></li>
+              </ul>";
+        echo "<pre>";
+        $menu = $this->tree($tmp,0,0);
+        print_r($menu);
+        $this->makehtml($menu);
+        echo $this->str;
+    }
+    public function makehtml($arr = array()){
+        if(!is_array($arr)){
+            return false;
+        }
+        $this->str .= '<ul>';
+        foreach($arr as $k => $v){
+
+            if(isset($v['children'])){
+                $this->str .= "<li>".$v['name']."</li>";
+                $this->makehtml($v['children']);
+            }else{
+                $this->str .= "<li><a href='#'>".$v['name']."</a>";
+            }
+        }
+        $this->str .= "</ul>";
+
+    }
     //实现菜单栏功能
     public function menu(){
 //        $a = [
@@ -141,12 +192,15 @@ class AdminController extends Controller
         );
 
         echo "<pre>";
+
         $tree = $this->Ancestry($tmp,11);
         print_r($tree);
         $str = '';
+
         foreach($tree as $key => $val){
             $str .= $val['name'].'>';
         }
+
         echo trim($str,'>');
 //        $tree = $this->tree2($tmp,0);
 //        echo "<pre>";

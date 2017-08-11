@@ -48,6 +48,8 @@ Route::any('red_packet',['uses'=>'TestController@red_packet','as'=>'red_packet']
 
 Route::any('tree_test',['uses'=>'AdminController@tree_test','as'=>'tree_test']);
 
+Route::any('tree_html',['uses'=>'AdminController@tree_html','as'=>'tree_html']);
+
 
 
 
