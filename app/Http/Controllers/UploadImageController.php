@@ -28,7 +28,6 @@ class UploadImageController extends Controller
               echo $new_file_name;
               $path = $request->file('file1')->storeAs('avatars',$new_file_name,'uploads');
             echo $path.'aaa';
-
         }
 //        $url = Storage::disk('uploads')->url('abc.jpg');
 

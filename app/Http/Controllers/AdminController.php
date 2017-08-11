@@ -73,6 +73,19 @@ class AdminController extends Controller
 
     //实现菜单栏功能
     public function menu(){
+//        $a = [
+//            0 => ['a'=>'111'],
+//            1 => ['a' =>'bbb'],
+//            2 => ['a'=>'ccc'],
+//            3 => ['a' =>'ddd']
+//        ];
+//        $return = array_where($a,function($v,$k){
+//            return $v['a'] == '111';
+//        });
+        //array_where()是过滤数组的作用
+//        print_r($return);exit;
+
+
         $list = DB::table('menus')
             ->orderBy('sort','asc')
             ->get()->toArray();
@@ -99,7 +112,6 @@ class AdminController extends Controller
                     </li>
                 </ul>';
 
-        $min = collect($list)->min();
 
         $tree = new Tree();
         $list = $tree->make_tree($list_arr);
@@ -108,29 +120,93 @@ class AdminController extends Controller
 
     }
 
+    public function tree_test(){
+//        $arr = [
+//            ['id'=>'1','parent_id'=>'0','name'=>'一级分类'],
+//            ['id'=>'2','parent_id'=>'1','name'=>'二级分类'],
+//            ['id'=>'3','parent_id'=>'2','name'=>'三级分类']
+//        ];
+        $tmp = array(
+            array('cate_id'=>1 , 'name'=>'首页' , 'parent_id'=>'0'),
+            array('cate_id'=>2 , 'name'=>'新闻中心' , 'parent_id'=>'1'),
+            array('cate_id'=>3 , 'name'=>'娱乐新闻' , 'parent_id'=>'2'),
+            array('cate_id'=>4 , 'name'=>'军事要闻' , 'parent_id'=>'2'),
+            array('cate_id'=>5 , 'name'=>'体育新闻' , 'parent_id'=>'2'),
+            array('cate_id'=>6 , 'name'=>'博客' , 'parent_id'=>'1'),
+            array('cate_id'=>7 , 'name'=>'旅游日志' , 'parent_id'=>'6'),
+            array('cate_id'=>8 , 'name'=>'心情' , 'parent_id'=>'6'),
+            array('cate_id'=>9 , 'name'=>'小小说' , 'parent_id'=>'6'),
+            array('cate_id'=>10 , 'name'=>'明星' , 'parent_id'=>'3'),
+            array('cate_id'=>11 , 'name'=>'网红' , 'parent_id'=>'3')
+        );
+
+        echo "<pre>";
+        $tree = $this->Ancestry($tmp,11);
+        print_r($tree);
+        $str = '';
+        foreach($tree as $key => $val){
+            $str .= $val['name'].'>';
+        }
+        echo trim($str,'>');
+//        $tree = $this->tree2($tmp,0);
+//        echo "<pre>";
+//        print_r($tree);
+
+    }
+
+    public function tree($arr , $parentId = 0 ,$level = 0, $pk = 'cate_id'){
+
+        $children = array_filter($arr ,function($val) use($parentId){
+            return $val['parent_id'] == $parentId;
+        });
+
+        $pc = [];
+        foreach($children as $child){
+            $cpid = $child[$pk];
+            $grandson = $this->tree($arr,$cpid,$level+1);
+            $newChild = $child;
+            $newChild['text'] = $child['name'];
+            $newChild['level'] = $level;
+            if(!empty($grandson)){
+                $newChild['children'] = $grandson;
+            }
+            array_push($pc,$newChild);
+        }
+        return $pc;
+    }
+
+    public function tree2($data , $id = 0,$lev = 0, $pk = 'cate_id'){
+        static $son = array();
+        foreach($data as $key => $val){
+            if($val['parent_id'] == $id){
+                $val['lev'] = $lev;
+                $son[] = $val;
+                $this->tree2($data, $val['cate_id'] , $lev+1);
+            }
+        }
+        return $son;
+    }
+    /**
+     * 寻找祖先
+     */
+    public function Ancestry($data,$pid,$pk = 'cate_id'){
+        static $ancestry = [];
+        foreach($data as $key => $val){
+            if($val[$pk] == $pid){
+                //下面两行调换会改变顺序
+                $this->Ancestry($data, $val['parent_id']);
+                $ancestry[] = $val;
+            }
+        }
+        return $ancestry;
+    }
+
     public function maketable(){
         $headers = ['title','content'];
         $project = LiZhi::all(['title','content'])->toArray();
 
     }
     public function test(Request $request,$cate1,$cate2,$p){
-
-        //array_walk()使用方法
-//        $arr = [
-//            ['11','12','13','14'],
-//            ['21','22','23','24'],
-//            ['31','32','33','34']
-//        ];
-////        $arr = ['1','2','3','4','5','6','7'];
-//        $a = 5;
-//        $b = 22;
-//        $new_arr = array_walk($arr,function(&$v,$k) use($a,$b){
-//            if($v[0] > $b){
-//                $v[0] = "ss".$v[0];
-//            }
-//        });
-//        echo "<pre>";
-//        print_r($arr);
         echo 'test';
         echo "<br/>";
         echo $cate1."-",$cate2."-".$p;
