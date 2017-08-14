@@ -17,6 +17,7 @@ class ArticleController extends Controller
     public function show($id){
         //每次对访问刷新次数加一
         $content = LiZhi::find($id);
+        //一个小操作，就可以进行监听
         Event::fire(new OrderShipped($content));
         echo $content->content;
         echo $content->click;
