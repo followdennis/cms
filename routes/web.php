@@ -28,6 +28,7 @@ Route::any('test/{cate1}-{cate2}-{p}.html',['uses'=>'AdminController@test','as'=
 
 Route::any('index/{cate1}-{cate2}-{p}.html',['uses'=>'AdminController@index','as'=>'index'])->where(['p'=>'[0-9]+','cate1'=>'[a-z]+','cate2'=>'[a-z]+']);Auth::routes();
 
+//array_walk()使用
 Route::any('chefs',['uses'=>'AdminController@_query','as'=>'chefs']);
 
 Route::any('set_redis',['uses'=>'AdminController@setRedis','as'=>'set_redis']);
@@ -41,6 +42,7 @@ Route::any('del_file',['uses'=>'UploadImageController@del_file','as'=>'del_file'
 
 Route::any('all_files',['uses'=>'UploadImageController@all_files','as'=>'all_files']);
 
+
 Route::any('spider_test',['uses'=>'TestController@spider_test','as'=>'spider_test']);
 Route::any('spider',['uses'=>'TestController@spider','as'=>'spider']);
 
@@ -50,6 +52,10 @@ Route::any('tree_test',['uses'=>'AdminController@tree_test','as'=>'tree_test']);
 
 Route::any('tree_html',['uses'=>'AdminController@tree_html','as'=>'tree_html']);
 
+//文章处理
+Route::any('list',['uses'=>'ArticleController@index','as'=>'list']);
+//文章详情
+Route::any('show/{id}',['uses'=>'ArticleController@show','as'=>'show']);
 
 
 

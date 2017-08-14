@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\SomeEvent' => [
             'App\Listeners\EventListener',
         ],
+        'App\Events\OrderShipped' => [
+            'App\Listeners\SendShipmentNotification',
+        ],
     ];
 
     /**
@@ -27,6 +30,9 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        //手动注册事件
+//        Event::listent('event.name',function($foo,$bar){
+//
+//        });
     }
 }

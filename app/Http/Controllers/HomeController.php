@@ -36,7 +36,6 @@ class HomeController extends Controller
         $b = '2';
         $res = compact("data");
         print_r($res);
-        print_r($res);
         echo "路由";
 
         //return view('admin.detail');
