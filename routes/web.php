@@ -60,5 +60,7 @@ Route::any('show/{id}',['uses'=>'ArticleController@show','as'=>'show']);
 Route::any('chefs_event',['uses'=>'ArticleController@chefs','as'=>'chefs_event']);
 
 
+Route::get('queue_test',['uses'=>'QueueController@queue_test']);
+
 
 
