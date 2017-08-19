@@ -20,7 +20,10 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\SendShipmentNotification',
         ],
     ];
-
+    //将订阅者注册进来
+//    protected $subscribe = [
+//        'App\Listeners\UserEventSubscriber',
+//    ];
     /**
      * Register any events for your application.
      *
