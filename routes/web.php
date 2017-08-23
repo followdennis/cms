@@ -59,6 +59,9 @@ Route::any('show/{id}',['uses'=>'ArticleController@show','as'=>'show']);
 
 Route::any('chefs_event',['uses'=>'ArticleController@chefs','as'=>'chefs_event']);
 
+//百度地图
+Route::any('baidu_map',['uses'=>'BaiDuMapController@index']);
+
 
 
 
