@@ -7,7 +7,7 @@ use Illuminate\Contracts\Cache\Store;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendShipmentNotification
+class SendShipmentNotification implements ShouldQueue
 {
     protected $session;
     /**
