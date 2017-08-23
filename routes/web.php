@@ -62,5 +62,10 @@ Route::any('chefs_event',['uses'=>'ArticleController@chefs','as'=>'chefs_event']
 
 Route::get('queue_test',['uses'=>'QueueController@queue_test']);
 
+/**
+ * 地图测试
+ */
+Route::any('baidu_map',['uses'=>'BaiDuMapController@index','as'=>'baidu_map']);
+
 
 
