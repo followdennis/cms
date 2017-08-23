@@ -1,6 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
+    {{ $str }}
+    @php
+        function jisuan($i){
+            return $i*$i;
+        };
+   $html=<<<EOF
+<html>
+<head>
+<title>标题</title>
+</head>
+<body>
+<a href='#' >点击</a>
+</body>
+</html>
+EOF;
+
+    echo htmlspecialchars($html);
+    @endphp
+    <script>
+
+    </script>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-2">

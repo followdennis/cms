@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
-        Commands\MultiThreadRequest::class
+        Commands\MultiThreadRequest::class,
+        Commands\MultithreadText::class
     ];
 
     /**

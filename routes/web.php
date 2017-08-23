@@ -70,5 +70,8 @@ Route::get('queue_test',['uses'=>'QueueController@queue_test']);
  */
 Route::any('baidu_map',['uses'=>'BaiDuMapController@index','as'=>'baidu_map']);
 
+Route::any('route_test/{province?}/{city?}/{district?}',['uses'=>'TestController@route_test']);
+
+
 
 
