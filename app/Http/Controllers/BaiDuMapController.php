@@ -13,12 +13,14 @@ class BaiDuMapController extends Controller
 
         $url = 'http://api.map.baidu.com/place/v2/search?';
         $data = [
-            'q'=>'银行$酒店',
+
+            'q'=>'银行',
             'region'=>'北京',
             'output'=>'json',
             'page_num'=>1,
-            'page_size'=>5,
+            'page_size'=>20,
             'ak'=>'5pZYl6ocvl75arR720O7hOxo4C9UfGQH'];
+
 
         $data = [
             'query'=>'银行$酒店',
@@ -30,6 +32,7 @@ class BaiDuMapController extends Controller
             'output'=>'json',
             'ak'=>'5pZYl6ocvl75arR720O7hOxo4C9UfGQH'
         ];
+
         $url = $url.$this->query_condition($data);
         echo "<pre>";
         $html = $this->https($url);

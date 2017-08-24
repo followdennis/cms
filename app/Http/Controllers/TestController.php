@@ -74,4 +74,9 @@ class TestController extends Controller
 
     }
 
+    public function route_test($province = 'jiangsu',$city='',$district = ''){
+        echo '路由测试';
+        echo $province.'-'.$city.'-'.$district;
+    }
+
 }
