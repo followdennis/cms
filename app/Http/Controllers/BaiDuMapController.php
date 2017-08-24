@@ -12,6 +12,7 @@ class BaiDuMapController extends Controller
         echo "测试百度地图";
 
         $url = 'http://api.map.baidu.com/place/v2/search?';
+        $url2 = 'http://api.map.baidu.com/geocoder/v2/?';
         $data = [
 
             'q'=>'银行',
@@ -33,9 +34,19 @@ class BaiDuMapController extends Controller
             'ak'=>'5pZYl6ocvl75arR720O7hOxo4C9UfGQH'
         ];
 
+
+        $data = [
+            'city'=>'北京市',
+            'address'=>'百度大厦',
+            'output'=>'json',
+            'ak'=>'5pZYl6ocvl75arR720O7hOxo4C9UfGQH'
+        ];
+        $url2 = $url2.$this->query_condition($data);
         $url = $url.$this->query_condition($data);
         echo "<pre>";
-        $html = $this->https($url);
+        //获取联想地址
+        $url3 = 'http://api.map.baidu.com/place/v2/suggestion?query=紫金研创&region=南京市&city_limit=true&output=json&ak=5pZYl6ocvl75arR720O7hOxo4C9UfGQH';
+        $html = $this->https($url3);
         echo $html;
     }
     public function query_condition($data = array()){

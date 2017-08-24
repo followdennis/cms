@@ -72,6 +72,11 @@ Route::any('baidu_map',['uses'=>'BaiDuMapController@index','as'=>'baidu_map']);
 
 Route::any('route_test/{province?}/{city?}/{district?}',['uses'=>'TestController@route_test']);
 
+/**
+ * 聚合函数测试
+ */
+Route::any('data_test',['uses'=>'DataTestController@index']);
+
 
 
 

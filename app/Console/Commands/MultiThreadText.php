@@ -10,7 +10,7 @@ class MultiThreadText extends Command
 {
     private $totalPageCount;
     private $counter        = 1;
-    private $concurrency    = 10;  // 同时并发抓取
+    private $concurrency    = 20;  // 同时并发抓取
     private $users = ['CycloneAxe', 'appleboy', 'Aufree', 'lifesign',
         'overtrue', 'zhengjinghua', 'NauxLiu'];
     /**
