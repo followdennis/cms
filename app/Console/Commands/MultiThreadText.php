@@ -9,8 +9,8 @@ use Illuminate\Console\Command;
 class MultiThreadText extends Command
 {
     private $totalPageCount;
-    private $counter        = 1;
-    private $concurrency    = 20;  // 同时并发抓取
+    private $counter        = 20;
+    private $concurrency    = 1;  // 同时并发抓取
     private $users = ['CycloneAxe', 'appleboy', 'Aufree', 'lifesign',
         'overtrue', 'zhengjinghua', 'NauxLiu'];
     /**
