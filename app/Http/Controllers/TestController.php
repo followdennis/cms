@@ -15,6 +15,16 @@ use Symfony\Component\DomCrawler\Crawler;
 class TestController extends Controller
 {
     //
+    public function test(){
+        $url = 'www.baidu.www.com.cn';
+        $pattern = '/^(?:\w+\.)*?(\w+)\.(?:com.cn|cn|com|net)/';
+        echo $url.'<br/>';
+//        $url = preg_replace('/^www\./','',$url);
+        preg_match($pattern,$url,$out);
+        print_r($out);
+        echo explode('.',$url)[0];
+
+    }
     public function spider_test(){
        $client = new Client();
 
