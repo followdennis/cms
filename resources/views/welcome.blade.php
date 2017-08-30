@@ -63,6 +63,16 @@
                 margin-bottom: 30px;
             }
         </style>
+        <script>
+            var  url = {
+                list:{
+                    fetch:'{{ route('regular_test') }}',
+                }
+            };
+
+            alert(url.list.fetch);
+
+        </script>
     </head>
     <body>
         <div class="flex-center position-ref full-height">

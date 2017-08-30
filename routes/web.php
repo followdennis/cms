@@ -77,6 +77,7 @@ Route::any('route_test/{province?}/{city?}/{district?}',['uses'=>'TestController
  */
 Route::any('data_test',['uses'=>'DataTestController@index']);
 
+Route::any('regular_test',['uses'=>'DataTestController@regular_test','as'=>'regular_test']);
 
 
 
