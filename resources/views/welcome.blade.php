@@ -76,12 +76,13 @@
                 for(var x in param){
                     var search = '{'+x+'}';
                     if(routeUrl.indexOf(search) >= 0){
-                        routeUrl = routeUrl.replace('{'+x+'}',params[x]);
+                        routeUrl = routeUrl.replace('{'+x+'}',param[x]);
                     }else{
-                        append.push(x+'+',+param[x]);
+                        append.push( x + '=' + param[x]);
                     }
                 }
 //                var url = '/'+_.trimStart(routeUrl,'/');
+
                 var url = routeUrl;
                 if(append.length == 0){
                     return url;
@@ -94,8 +95,7 @@
                 url += append.join('&');
                 return url;
             }
-
-            alert(jsRoute(url.list.fetch,{id:1}));
+            
         </script>
     </head>
     <body>

@@ -79,5 +79,4 @@ Route::any('data_test',['uses'=>'DataTestController@index']);
 
 Route::any('regular_test',['uses'=>'DataTestController@regular_test','as'=>'regular_test']);
 
-
-
+Route::any('auxiliary',['uses'=>'DataTestController@auxiliary','as'=>'auxiliary']);

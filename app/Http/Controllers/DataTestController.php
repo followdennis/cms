@@ -34,4 +34,34 @@ class DataTestController extends Controller
         preg_match_all($p,$str,$out);
         print_r($out);
     }
+    /**
+     * 辅助函数
+     */
+    public function auxiliary()
+    {
+        //用方法反求出 url
+        $url = action('DataTestController@index');
+        echo $url;
+        echo '<br/>';
+        echo url('user/profile',['id'=>1,'name'=>'xioaming']);//这样传递的内容，下标无效果
+        echo '<br/>';
+        echo route('test',['cate1'=>1,'cate2'=>'xiaoming','p'=>10]); //这种写法比较严格
+        echo "<br/>";
+        echo str_limit('处理完成，请处理', 8);
+        echo '各种路径<br/>';
+        echo public_path();
+        echo "<br/>";
+        echo storage_path();
+        echo "<br/>";
+        echo database_path();
+        echo "<br/>";
+        echo app_path();
+        //retry 没什么效果
+
+        $i = 0;
+        retry(5,function() use($i){
+            echo $i;
+            echo '5';
+        },1000);
+    }
 }
