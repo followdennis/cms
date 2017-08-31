@@ -70,8 +70,32 @@
                 }
             };
 
-            alert(url.list.fetch);
+            //http://www.cms.cc/regular_test
+            var jsRoute = function jsRoute(routeUrl,param){
+                var append = [];
+                for(var x in param){
+                    var search = '{'+x+'}';
+                    if(routeUrl.indexOf(search) >= 0){
+                        routeUrl = routeUrl.replace('{'+x+'}',params[x]);
+                    }else{
+                        append.push(x+'+',+param[x]);
+                    }
+                }
+//                var url = '/'+_.trimStart(routeUrl,'/');
+                var url = routeUrl;
+                if(append.length == 0){
+                    return url;
+                }
+                if(url.indexOf('?') >=0){
+                    url +='&';
+                }else{
+                    url += '?';
+                }
+                url += append.join('&');
+                return url;
+            }
 
+            alert(jsRoute(url.list.fetch,{id:1}));
         </script>
     </head>
     <body>
