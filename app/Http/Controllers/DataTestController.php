@@ -34,4 +34,13 @@ class DataTestController extends Controller
         preg_match_all($p,$str,$out);
         print_r($out);
     }
+    //辅助函数测试
+    public function ftest(){
+        //url使用的时候路由前面的部分
+        echo url('ftest');
+        echo '<br/>';
+        //route 使用的是后面的as部分的内容
+        echo route('f_test');
+
+    }
 }
