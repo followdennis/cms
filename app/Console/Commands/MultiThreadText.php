@@ -5,12 +5,13 @@ namespace App\Console\Commands;
 use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class MultiThreadText extends Command
 {
     private $totalPageCount;
-    private $counter        = 20;
-    private $concurrency    = 1;  // 同时并发抓取
+    private $counter        = 0;
+    private $concurrency    = 10;  // 同时并发抓取
     private $users = ['CycloneAxe', 'appleboy', 'Aufree', 'lifesign',
         'overtrue', 'zhengjinghua', 'NauxLiu'];
     /**
@@ -62,6 +63,7 @@ class MultiThreadText extends Command
             'fulfilled'   => function ($response, $index){
                 $res = $response->getBody()->getContents();
                 echo $res;
+
                 $this->countedAndCheckEnded();
             },
             'rejected' => function ($reason, $index){
@@ -75,6 +77,7 @@ class MultiThreadText extends Command
         $promise->wait();
         $end = microtime(true);
         $this->info(round(($end-$start),2)) ;
+        info(round(($end-$start),2));
     }
 
     public function countedAndCheckEnded()
