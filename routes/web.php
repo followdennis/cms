@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/view',function(){
+   return 'view';
+});
 Route::any('test','TestController@test');
 Route::get('/home', 'HomeController@index');
 Route::get('/detail','HomeController@detail');
