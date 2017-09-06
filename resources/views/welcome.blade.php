@@ -95,7 +95,17 @@
                 url += append.join('&');
                 return url;
             }
-            
+            var mark = {
+                name:'aaa',
+                age:20
+            };
+            var content = document.createElement('div');
+            content.innerHTML = '宝岛台湾';
+            content.className = 'taiwan';
+            mark.name = 'bbb';
+            mark.content = content;
+            console.log(mark);
+
         </script>
     </head>
     <body>

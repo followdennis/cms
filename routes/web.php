@@ -80,4 +80,7 @@ Route::any('data_test',['uses'=>'DataTestController@index']);
 Route::any('regular_test',['uses'=>'DataTestController@regular_test','as'=>'regular_test']);
 Route::any('ftest',['uses'=>'DataTestController@ftest','as'=>'f_test']);
 
+/**
+ * 辅助
+ */
 Route::any('auxiliary',['uses'=>'DataTestController@auxiliary','as'=>'auxiliary']);
