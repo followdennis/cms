@@ -14,7 +14,8 @@ class ArticleController extends Controller
     //
     public function index(LiZhi $lizhi){
         $list = $lizhi->getList();
-
+        dd($list);
+        echo 'aaa';
     }
     public function show($id){
         //每次对访问刷新次数加一

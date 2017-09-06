@@ -4,6 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -15,7 +17,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         //
         Commands\MultiThreadRequest::class,
-        Commands\MultithreadText::class
+        Commands\MultiThreadText::class
     ];
 
     /**
@@ -28,6 +30,15 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+//        $schedule->call(function () {
+//            $status = DB::table('lizhi')->insert([
+//                'name'=>'aaa',
+//                'title'=>'标题',
+//                'content'=>'内容'
+//                ]);
+//            Log::info($status ? 'ok':'failure');
+//        })->dailyAt('21:10');
+        $schedule->command('multithread:test')->dailyAt('21:41');
     }
 
     /**
