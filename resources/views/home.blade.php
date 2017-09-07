@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    {{ $str }}
+
     @php
         function jisuan($i){
             return $i*$i;

@@ -51,10 +51,13 @@ class DataTestController extends Controller
     {
         //用方法反求出 url
         $url = action('DataTestController@index');
+        echo 'action';
         echo $url;
-        echo '<br/>';
+        echo '<br/>url';
         echo url('user/profile',['id'=>1,'name'=>'xioaming']);//这样传递的内容，下标无效果
         echo '<br/>';
+        echo 'route';
+        echo "<br/>";
         echo route('test',['cate1'=>1,'cate2'=>'xiaoming','p'=>10]); //这种写法比较严格
         echo "<br/>";
         echo str_limit('处理完成，请处理', 8);
@@ -67,7 +70,15 @@ class DataTestController extends Controller
         echo "<br/>";
         echo app_path();
         //retry 没什么效果
+        echo "<br/>";
+        echo "getByNameUri---这个会获取包括路由中的参数，但不包括可选参数  ？<br/>";
+        echo app('router')->getRoutes()->getByName('test')->uri();
 
+        $route = 'test/{cate1}-{cate2}-{p}.html';
+        preg_match_all("/\{([\w+]+)\}/",$route,$route_var);
+echo "<br/><pre>";
+        print_r($route_var[1]);
+echo "<br/>";
         $i = 0;
         retry(5,function() use($i){
             echo $i;

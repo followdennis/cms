@@ -87,3 +87,12 @@ Route::any('ftest',['uses'=>'DataTestController@ftest','as'=>'f_test']);
  * 辅助
  */
 Route::any('auxiliary',['uses'=>'DataTestController@auxiliary','as'=>'auxiliary']);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/cache', function () {
+    return cache('key');
+});

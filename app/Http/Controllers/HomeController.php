@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,19 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        echo Auth::user()->name;
+//        dd(\Route::has('test'));
+        echo route('baidu_map');
+        echo "<br/>";
+        echo app('router')->getRoutes()->getByName('baidu_map')->uri();
         return view('home');
-    }
-
-    public function detail(){
-        $data = ['name'=>'xiaoming','sex'=>'male','age'=>'18','address'=>'beijing'];
-        echo "<pre>";
-        print_r($data);
-
-        $b = '2';
-        $res = compact("data");
-        print_r($res);
-        echo "路由";
-
-        //return view('admin.detail');
     }
 }
