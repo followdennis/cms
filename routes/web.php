@@ -96,3 +96,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/cache', function () {
     return cache('key');
 });
+
+/**
+ * 图片测试
+ */
+Route::any('image','ImageController@index')->name('image');
