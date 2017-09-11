@@ -23,6 +23,9 @@ class TestController extends Controller
         preg_match($pattern,$url,$out);
         print_r($out);
         echo explode('.',$url)[0];
+        $a = 'a';
+        $b = 'ab';
+        echo strcmp($a,$b);
 
     }
     public function spider_test(){
@@ -89,4 +92,7 @@ class TestController extends Controller
         echo $province.'-'.$city.'-'.$district;
     }
 
+}
+class A{
+    public $num = 100;
 }

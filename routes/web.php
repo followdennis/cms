@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
+    //这里面有jquery生成二维码的插件
     return view('welcome');
 });
 Route::get('/view',function(){
