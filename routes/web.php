@@ -18,6 +18,7 @@ Route::get('/view',function(){
    return 'view';
 });
 Route::any('test','TestController@test');
+Route::any('/','TestController@test');
 Route::get('/home', 'HomeController@index');
 Route::get('/detail','HomeController@detail');
 Route::any('sidebar',function(){

@@ -40,7 +40,8 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Be right back.</div>
+                {{--<div class="title">Be right back.</div>--}}
+                <div class="title">休息一会.</div>
             </div>
         </div>
     </body>

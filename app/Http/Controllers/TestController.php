@@ -16,13 +16,17 @@ class TestController extends Controller
 {
     //
     public function test(){
-        $url = 'www.baidu.www.com.cn';
-        $pattern = '/^(?:\w+\.)*?(\w+)\.(?:com.cn|cn|com|net)/';
-        echo $url.'<br/>';
-//        $url = preg_replace('/^www\./','',$url);
-        preg_match($pattern,$url,$out);
-        print_r($out);
-        echo explode('.',$url)[0];
+//        $url = 'www.baidu.www.com.cn';
+//        $pattern = '/^(?:\w+\.)*?(\w+)\.(?:com.cn|cn|com|net)/';
+//        echo $url.'<br/>';
+////        $url = preg_replace('/^www\./','',$url);
+//        preg_match($pattern,$url,$out);
+//        print_r($out);
+//        echo explode('.',$url)[0];
+
+        config(['app.timezone'=>'America/Chicago']);
+        $value = config('app.timezone');
+        echo $value;
 
     }
     public function spider_test(){
