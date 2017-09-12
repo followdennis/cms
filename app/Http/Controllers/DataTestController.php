@@ -8,12 +8,14 @@ use Illuminate\Support\Facades\DB;
 class DataTestController extends Controller
 {
     //
-    function index(){
+    function index(Request $request){
+        //聚合排序
         $res = DB::table('data_test')
             ->select('cate',DB::raw('sum(num) as total'))
             ->groupBy('cate')
             ->orderBy('total','desc')
             ->get()->toArray();
+//        $res = $request->except('_method');
         echo "<pre>";
         print_r($res);
     }

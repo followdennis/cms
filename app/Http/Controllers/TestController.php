@@ -23,9 +23,26 @@ class TestController extends Controller
         preg_match($pattern,$url,$out);
         print_r($out);
         echo explode('.',$url)[0];
-        $a = 'a';
-        $b = 'ab';
-        echo strcmp($a,$b);
+        $a = 'amp';
+        $b = 'lampb';
+        $res = strcmp($a,$b);
+
+
+        echo "<hr>";
+        echo $res;
+        switch($res){
+            case 1:
+                echo '1';
+                break;
+            case -1:
+                echo '2';
+                break;
+            case 0:
+                echo '3';
+                break;
+            default:
+                echo '4';
+        }
 
     }
     public function spider_test(){

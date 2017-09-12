@@ -30,7 +30,8 @@ Route::any('maketable',['uses'=>'AdminController@maketable','as'=>'maketable']);
 Route::any('test/{cate1}-{cate2}-{p}.html',['uses'=>'AdminController@test','as'=>'test'])->where(['p'=>'[0-9]+','cate1'=>'[a-z]+','cate2'=>'[a-z]+']);
 
 
-Route::any('index/{cate1}-{cate2}-{p}.html',['uses'=>'AdminController@index','as'=>'index'])->where(['p'=>'[0-9]+','cate1'=>'[a-z]+','cate2'=>'[a-z]+']);Auth::routes();
+Route::any('index/{cate1}-{cate2}-{p}.html',['uses'=>'AdminController@index','as'=>'index'])->where(['p'=>'[0-9]+','cate1'=>'[a-z]+','cate2'=>'[a-z]+']);
+Auth::routes();
 
 //array_walk()使用
 Route::any('chefs',['uses'=>'AdminController@_query','as'=>'chefs']);
@@ -88,6 +89,7 @@ Route::any('ftest',['uses'=>'DataTestController@ftest','as'=>'f_test']);
  * 辅助
  */
 Route::any('auxiliary',['uses'=>'DataTestController@auxiliary','as'=>'auxiliary']);
+
 
 Auth::routes();
 
