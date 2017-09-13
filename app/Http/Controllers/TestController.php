@@ -14,6 +14,20 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class TestController extends Controller
 {
+    //登录测试
+    public function login_test1(){
+
+    }
+
+    //登录测试
+    public function login_test2(){
+
+    }
+
+    //登录测试
+    public function login_test3(){
+
+    }
     //
     public function test(){
         $url = 'www.baidu.www.com.cn';

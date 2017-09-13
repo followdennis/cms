@@ -167,6 +167,8 @@ return [
          * Package Service Providers...
          */
 
+        Intervention\Image\ImageServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
         //
 
         /*
@@ -179,8 +181,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         App\Providers\RiakServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
-        Laravel\Passport\PassportServiceProvider::class,
+
 
     ],
 

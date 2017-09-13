@@ -17,7 +17,13 @@ class DataTestController extends Controller
             ->get()->toArray();
 //        $res = $request->except('_method');
         echo "<pre>";
-        print_r($res);
+//        print_r($res);
+        //单词分界符
+        $pattern = '~\bA\b~';
+        $str="(A+AB+ABC+(B+BC))*A/B";
+        echo $str."<br/>";
+        $out = preg_replace($pattern,'',$str);
+        print_r($out);
     }
 
     public function regular_test(){

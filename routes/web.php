@@ -104,3 +104,17 @@ Route::get('/cache', function () {
  * 图片测试
  */
 Route::any('image','ImageController@index')->name('image');
+
+/**
+ * api测试
+ */
+
+Route::get('logina',function(){
+   return view('logintest.index');
+});
+Route::get('loginb',function(){
+    return view('logintest.test');
+});
+Route::get('loginc',function(){
+    return view('logintest.test2');
+});
