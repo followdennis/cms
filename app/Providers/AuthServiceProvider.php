@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
@@ -29,9 +30,9 @@ class AuthServiceProvider extends ServiceProvider
         //注册 发布/撤销 访问令牌 等需要的路由
         Passport::routes();
         //基本请求时间设置
-//        Passport::tokensExpireIn(Carbon::now()->addDays(15));
-//
-//        Passport::refreshTokensExpireIn(Carbon::now()->addDays(30));
+        Passport::tokensExpireIn(Carbon::now()->addDays(1));
+
+        Passport::refreshTokensExpireIn(Carbon::now()->addDays(3));
 
     }
 }

@@ -118,3 +118,70 @@ Route::get('loginb',function(){
 Route::get('loginc',function(){
     return view('logintest.test2');
 });
+
+//请求令牌
+Route::get('mobile_token',function(){
+    $query = http_build_query([
+       'client_id' => '4',
+        'redirect_uri' => 'http://localhost/api_redirect',
+        'response_type'=>'json',
+        'scope' => '',
+    ]);
+    return redirect('http://www.cms.cc/oauth/authorize?'.$query);
+});
+
+
+//手机等，第一方应用
+Route::get('mobile_test',function(){
+
+});
+
+
+Route::get('/api_redirect', function (Request $request) {
+    $http = new GuzzleHttp\Client;
+
+    $response = $http->post('http://your-app.com/oauth/token', [
+        'form_params' => [
+            'grant_type' => 'password',
+            'client_id' => '4',
+            'client_secret' => '2LhTFOycBp4uzn32Lbz863x406GQEbIVN2DI1zwK',
+            'redirect_uri' => 'http://www.cms.cc/api_route',
+            'code' => $request->code,
+        ],
+    ]);
+
+    return json_decode((string) $response->getBody(), true);
+});
+
+Route::get('api_route',function(){
+    return 'api_redirect';
+});
+
+Route::get('api_pass',function(){
+    $http = new GuzzleHttp\Client;
+
+    $response = $http->post('http://www.cms.cc/oauth/token', [
+        'form_params' => [
+            'grant_type' => 'password',
+            'client_id' => '6',
+            'client_secret' => '6iesBQZvIWfze6LAyAecu17iyiB2qkg4mWkaBSiJ',
+            'username' => 'dennis@qq.com',
+            'password' => '123456',
+            'scope' => '',
+        ],
+    ]);
+    return json_decode((string) $response->getBody(), true);
+});
+Route::get('api_user',function(\Illuminate\Http\Request $request){
+
+    $http = new GuzzleHttp\Client;
+    $accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImJiNGI3NDY3ZDc1YzUyMWE3MzYxMTg3MjA4MDBiNDM1NDE3YjkwNjY3MTk3M2NmNDUwNWM0NzQwOTc0ZmZiNTMyMTRjMGFhNGY0OTkwNDE3In0.eyJhdWQiOiI2IiwianRpIjoiYmI0Yjc0NjdkNzVjNTIxYTczNjExODcyMDgwMGI0MzU0MTdiOTA2NjcxOTczY2Y0NTA1YzQ3NDA5NzRmZmI1MzIxNGMwYWE0ZjQ5OTA0MTciLCJpYXQiOjE1MDUzNzAyMzEsIm5iZiI6MTUwNTM3MDIzMSwiZXhwIjoxNTA1NDU2NjMxLCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.I0WlGfYS5DipuWBE2hmlcTmdUDfh3UCp8bDBoJZEv2JtbVd_H43iNu2AujzRslWYbYeXy9vEI6Us3N_DCbeOyW2aVDMmdzFeHrXs9rLuFNeLFYYH98fuoEYSjl4KFTpB2yP-TAk2EY1QNgwn-5NGidlZr7j5OhkaWB1HTLdwgZqV2_kapYDeAtD6MHbo72JJCMNAvDEPdAvRFziA_ntLxduLrrMNF7W-BLvepT79k6yqqWodxb037NpDMIQVPZ4J-18nMcxd530MPh3-yYFlT-T6vep7NPpZsiiK_TpkkuHuzKXmKnoKVhFanWjaiw0FKa2Y_hnNOdZRMBOO_e_ywuwj1ZHAG8TqyVIlJ5u7kF-mBBe3JUrc5sRWJqiZ-zbCHxNvpo8XMKIxs3XnfxknhTGujOsUsFcCN4dBZPN1LTN4SA_i0Dedax1i33HcxwDAXFI4t_VPFdc8XNUk5fN240PIZN4gWWEB1iDDfNnpMoJ7uG94qivkTdtE72Iq3U2oJhT5ntcGfPq9WTDeDrC8G2V9Ph-4rR_reSuz5KiGuC_yUXOEn40L1CPEe2suZypvGmd8c_5BxxQr1oHOq6EVxWZBxYXpogWVIggYHdyMmYGxJQOv4CEvEfhRRLQBnBZorFDElxuVszFPS9b26NBO-AAsVgjlgeDwI6hH5-C3eJ8';
+    $response = $http->get('http://www.cms.cc/api/user',[
+        'headers' => [
+            'Accept' => 'application/json',
+            'Authorization' => 'Bearer '.$accessToken,
+        ],
+    ]);
+    return json_decode((string) $response->getBody(),true);
+
+});
