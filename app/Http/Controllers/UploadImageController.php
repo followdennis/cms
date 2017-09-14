@@ -40,12 +40,29 @@ class UploadImageController extends Controller
         //可以删除
 //        Storage::delete('avatars/46Wa9M7dIOhmnn40iX5FsjTHBuohaL080sGOOVru.jpeg');
 //        Storage::deleteDirectory('avatars');
-        echo "删除文件或删除文件夹";
+//        Storage::deleteDirectory('files');
+//        echo "删除文件或删除文件夹";
     }
 
     public function all_files(){
         $files = Storage::disk('uploads')->files();
         $files = Storage::disk('uploads')->allFiles();
         dd($files);
+    }
+    //写数据入文件
+    public function file_save_data(){
+        $str = 'fdflajsdlflsjd'.date('His',time());
+        //这个是覆盖存入的
+        $status = Storage::disk('local')->put('access_token.txt',$str);
+//        $status = Storage::disk('local')->append('access_token.txt',$str);
+        if($status){
+            echo 'ok';
+        }
+
+    }
+    //读取数据文件
+    public function file_get_data(){
+        $res = Storage::get('access_token.txt');
+        echo $res;
     }
 }

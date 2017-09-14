@@ -36,18 +36,29 @@ Auth::routes();
 //array_walk()使用
 Route::any('chefs',['uses'=>'AdminController@_query','as'=>'chefs']);
 
+
+/**
+ * 缓存测试
+ */
 Route::any('set_redis',['uses'=>'AdminController@setRedis','as'=>'set_redis']);
 Route::any('get_redis',['uses'=>'AdminController@getRedis','as'=>'get_redis']);
+Route::any('cache_set',['uses'=>'AdminController@cache_set','as'=>'cache_set']);
+Route::any('cache_get',['uses'=>'AdminController@cache_get','as'=>'cache_get']);
 
+
+/**
+ * 文件处理
+ */
 Route::any('image',['uses'=>'UploadImageController@index','as'=>'image']);
 Route::any('image_upload',['uses'=>'UploadImageController@index_basic','as'=>'image_upload']);
-
 Route::any('del_file',['uses'=>'UploadImageController@del_file','as'=>'del_file']);
-
-
 Route::any('all_files',['uses'=>'UploadImageController@all_files','as'=>'all_files']);
+Route::any('file_save_data',['uses'=>'UploadImageController@file_save_data','as'=>'file_save_data']);
+Route::any('file_get_data',['uses'=>'UploadImageController@file_get_data','as'=>'file_save_data']);
 
-
+/**
+ * 爬虫测试
+ */
 Route::any('spider_test',['uses'=>'TestController@spider_test','as'=>'spider_test']);
 Route::any('spider',['uses'=>'TestController@spider','as'=>'spider']);
 
@@ -90,11 +101,8 @@ Route::any('ftest',['uses'=>'DataTestController@ftest','as'=>'f_test']);
  */
 Route::any('auxiliary',['uses'=>'DataTestController@auxiliary','as'=>'auxiliary']);
 
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
-
 
 Route::get('/cache', function () {
     return cache('key');
@@ -103,7 +111,7 @@ Route::get('/cache', function () {
 /**
  * 图片测试
  */
-Route::any('image','ImageController@index')->name('image');
+Route::any('image_handle','ImageController@index')->name('image');
 
 /**
  * api测试

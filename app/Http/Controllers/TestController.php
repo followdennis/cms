@@ -7,6 +7,7 @@ use GuzzleHttp\Pool;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise;
@@ -57,6 +58,14 @@ class TestController extends Controller
             default:
                 echo '4';
         }
+//        Log::emergency('aaa');
+//        Log::alert('bbb');
+//        Log::critical('ccc');
+//        Log::error('dd');
+//        Log::warning('ee');
+//        Log::notice('ff');
+//        Log::info('aagga');
+//        Log::debug('qq');
 
     }
     public function spider_test(){
