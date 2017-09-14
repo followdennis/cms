@@ -11,6 +11,7 @@ use App\Services\Utils;
 
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -307,6 +308,13 @@ class AdminController extends Controller
             echo 'not find';
         }
     }
-
+    //redis缓存
+    public function cache_set(){
+            Cache::store('redis')->put('cache_name','wang',1);
+        echo 'ook';
+    }
+    public function cache_get(){
+        echo Cache::store('redis')->get('cache_name');
+    }
 
 }

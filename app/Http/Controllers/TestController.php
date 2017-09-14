@@ -7,6 +7,7 @@ use GuzzleHttp\Pool;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise;
@@ -14,8 +15,23 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class TestController extends Controller
 {
+    //登录测试
+    public function login_test1(){
+
+    }
+
+    //登录测试
+    public function login_test2(){
+
+    }
+
+    //登录测试
+    public function login_test3(){
+
+    }
     //
     public function test(){
+
 //        $url = 'www.baidu.www.com.cn';
 //        $pattern = '/^(?:\w+\.)*?(\w+)\.(?:com.cn|cn|com|net)/';
 //        echo $url.'<br/>';
@@ -27,6 +43,43 @@ class TestController extends Controller
         config(['app.timezone'=>'America/Chicago']);
         $value = config('app.timezone');
         echo $value;
+
+        $url = 'www.baidu.www.com.cn';
+        $pattern = '/^(?:\w+\.)*?(\w+)\.(?:com.cn|cn|com|net)/';
+        echo $url.'<br/>';
+//        $url = preg_replace('/^www\./','',$url);
+        preg_match($pattern,$url,$out);
+        print_r($out);
+        echo explode('.',$url)[0];
+        $a = 'amp';
+        $b = 'lampb';
+        $res = strcmp($a,$b);
+
+
+        echo "<hr>";
+        echo $res;
+        switch($res){
+            case 1:
+                echo '1';
+                break;
+            case -1:
+                echo '2';
+                break;
+            case 0:
+                echo '3';
+                break;
+            default:
+                echo '4';
+        }
+//        Log::emergency('aaa');
+//        Log::alert('bbb');
+//        Log::critical('ccc');
+//        Log::error('dd');
+//        Log::warning('ee');
+//        Log::notice('ff');
+//        Log::info('aagga');
+//        Log::debug('qq');
+
 
     }
     public function spider_test(){
@@ -93,4 +146,7 @@ class TestController extends Controller
         echo $province.'-'.$city.'-'.$district;
     }
 
+}
+class A{
+    public $num = 100;
 }

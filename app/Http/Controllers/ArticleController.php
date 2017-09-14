@@ -16,6 +16,11 @@ class ArticleController extends Controller
         $list = $lizhi->getList();
         dd($list);
         echo 'aaa';
+        $pattern = '~\bA\b~';
+        $str="(A+AB+ABC+(B+BC))*A/B";
+        $out = preg_replace($pattern,$str);
+        print_r($out);
+
     }
     public function show($id){
         //每次对访问刷新次数加一
