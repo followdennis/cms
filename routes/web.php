@@ -194,3 +194,7 @@ Route::get('api_user',function(\Illuminate\Http\Request $request){
     return json_decode((string) $response->getBody(),true);
 
 });
+/**
+ * 相关性测试
+ */
+Route::any('recommend',['uses'=>'RecommentController@index','as'=>'recomment']);
