@@ -9,6 +9,7 @@ class RecommentController extends Controller
     //
     public function index(){
         $demo_title= "简明现代魔法";
+        $str = 'nnn';
         $demo_arr_title= array("简单易懂的现代魔法","简单明了的现代魔法","简明扼要的古代魔法","不简单的现代魔法","很难懂的现代魔法");
         $new_array= $this->getSimilar($demo_title,$demo_arr_title);
 //print_r($new_array);
