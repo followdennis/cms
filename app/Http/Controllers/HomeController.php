@@ -27,7 +27,7 @@ class HomeController extends Controller
         echo Auth::user()->name;
 //        dd(\Route::has('test'));
         echo route('baidu_map');
-        echo 'hello';
+        echo 'hello000';
         echo "<br/>";
         echo app('router')->getRoutes()->getByName('baidu_map')->uri();
         return view('home');
