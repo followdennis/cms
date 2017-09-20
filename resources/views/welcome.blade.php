@@ -107,6 +107,24 @@
             console.log(mark);
 
         </script>
+        {{--生成二维码的js插件--}}
+        <script type="text/javascript" src="https://www.helloweba.com/js/jquery.js"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery.qrcode.min.js') }}"></script>
+        <script>
+            $(document).ready(function(){
+//                $("#code").qrcode({
+//                    render: "table", //table方式
+//                    width: 150, //宽度
+//                    height:150, //高度
+//                    text: "www.helloweba.com" //任意内容
+//                });
+                $('#code').qrcode({
+                    'text':"http://www.helloweba.com",
+                    width:100,
+                    height:100
+                });
+            })
+        </script>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -124,9 +142,11 @@
             <div class="content">
                 <div class="title m-b-md">
                     Hello Laravel
+
                 </div>
                 <div>
                     <img src='{{ asset('images/2016071510134013733.jpg') }}' />
+                    <div id="code"></div>
                 </div>
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
