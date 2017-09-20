@@ -310,11 +310,20 @@ class AdminController extends Controller
     }
     //redis缓存
     public function cache_set(){
-            Cache::store('redis')->put('cache_name','wang',1);
-        echo 'ook';
+            if(Cache::store('redis')->put('cache_name','wang',1)){
+                echo 'ook';
+            }else{
+                echo 'fail';
+            }
+
     }
     public function cache_get(){
-        echo Cache::store('redis')->get('cache_name');
+        if(Cache::store('redis')->has('cache_name')){
+            echo Cache::store('redis')->get('cache_name');
+        }else{
+            echo 'no i have no data';
+        }
+
     }
 
 }
