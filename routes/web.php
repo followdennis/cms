@@ -19,6 +19,7 @@ Route::get('/view',function(){
    return 'view';
 });
 Route::any('test','TestController@test');
+Route::any('/','TestController@test');
 Route::get('/home', 'HomeController@index');
 Route::get('/detail','HomeController@detail');
 Route::any('sidebar',function(){
@@ -193,3 +194,7 @@ Route::get('api_user',function(\Illuminate\Http\Request $request){
     return json_decode((string) $response->getBody(),true);
 
 });
+/**
+ * 相关性测试
+ */
+Route::any('recommend',['uses'=>'RecommentController@index','as'=>'recomment']);
