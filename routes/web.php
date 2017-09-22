@@ -25,6 +25,11 @@ Route::get('/detail','HomeController@detail');
 Route::any('sidebar',function(){
     return view('sidebar');
 });
+/**
+ * 序列化测试
+ */
+Route::any('test_serialize','TestController@test_serialize');
+
 Route::any('menu',['uses'=>'AdminController@menu','as'=>'menu']);
 Route::any('maketable',['uses'=>'AdminController@maketable','as'=>'maketable']);
 
@@ -108,6 +113,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/cache', function () {
     return cache('key');
 });
+
 
 /**
  * 图片测试

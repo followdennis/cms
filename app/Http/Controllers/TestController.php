@@ -15,6 +15,22 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class TestController extends Controller
 {
+    public function test_serialize(){
+        $arr = [
+            'name'=>'xiaoming',
+            'age'=>30,
+            'sex'=>'男'
+        ];
+        $str = serialize($arr);
+        echo $str;
+        $str2 = unserialize($str);
+        echo "<br/>";
+        echo "<pre>";
+        print_r($str2);
+    }
+    public function test_unserialize(){
+
+    }
     //登录测试
     public function login_test1(){
 
