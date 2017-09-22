@@ -9,9 +9,12 @@ class ImageController extends Controller
 {
     //
     public function index(){
-        echo 'img';
-        $manager = new ImageManager(['driver'=>'imagick']);
-        $image = $manager->make('public/timg.jpg')->resize(300,200);
 
+
+        $manager = new ImageManager(array('driver' => 'imagick'));
+
+// to finally create image instances
+        $image = $manager->make(asset('timg.jpg'))->resize(200, 200);
+        $image->save('new_avatar.jpg');
     }
 }

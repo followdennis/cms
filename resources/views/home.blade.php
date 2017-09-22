@@ -20,7 +20,16 @@ EOF;
     echo htmlspecialchars($html);
     @endphp
     <script>
+        function aaa(a){
+            var c = a;
+            var b= (function (e){
+                console.log(e);
+                return c;
+            })()
+            alert(b);
+        }
 
+        aaa('123');
     </script>
     <div class="container-fluid">
         <div class="row">

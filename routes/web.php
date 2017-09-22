@@ -16,7 +16,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/view',function(){
-   return 'view';
+   return view('home');
 });
 Route::any('test','TestController@test');
 Route::any('/','TestController@test');
@@ -110,9 +110,9 @@ Route::get('/cache', function () {
 });
 
 /**
- * 图片测试
+ * 图片测试picture
  */
-Route::any('image_handle','ImageController@index')->name('image');
+Route::any('picture_handle','ImageController@index');
 
 /**
  * api测试
