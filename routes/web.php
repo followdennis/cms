@@ -70,9 +70,18 @@ Route::any('spider',['uses'=>'TestController@spider','as'=>'spider']);
 
 Route::any('red_packet',['uses'=>'TestController@red_packet','as'=>'red_packet']);
 
+/**
+ * 树结构测试
+ */
 Route::any('tree_test',['uses'=>'AdminController@tree_test','as'=>'tree_test']);
+Route::any('tree2_test',['uses'=>'AdminController@tree2_test','as'=>'tree2_test']);
 
 Route::any('tree_html',['uses'=>'AdminController@tree_html','as'=>'tree_html']);
+/**
+ * 树结构测试
+ */
+Route::any('tree',['uses'=>'TreeController@index','as'=>'tree']);
+
 
 //文章处理
 Route::any('list',['uses'=>'ArticleController@index','as'=>'list']);
@@ -204,3 +213,12 @@ Route::get('api_user',function(\Illuminate\Http\Request $request){
  * 相关性测试
  */
 Route::any('recommend',['uses'=>'RecommentController@index','as'=>'recomment']);
+
+/**
+ * category分类测试
+ */
+Route::any('category',['uses'=>'CategoryController@index','as'=>'category']);
+Route::any('json',['uses'=>'CategoryController@json','as'=>'json']);
+
+
+

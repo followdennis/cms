@@ -203,12 +203,9 @@ class AdminController extends Controller
         }
 
         echo trim($str,'>');
-//        $tree = $this->tree2($tmp,0);
-//        echo "<pre>";
-//        print_r($tree);
+
 
     }
-
     public function tree($arr , $parentId = 0 ,$level = 0, $pk = 'cate_id'){
 
         $children = array_filter($arr ,function($val) use($parentId){
@@ -229,7 +226,12 @@ class AdminController extends Controller
         }
         return $pc;
     }
-
+    public function tree2_test(){
+        $tmp = $this->tmp;
+        $tree = $this->tree2($tmp,0);
+        echo "<pre>";
+        print_r($tree);
+    }
     public function tree2($data , $id = 0,$lev = 0, $pk = 'cate_id'){
         static $son = array();
         foreach($data as $key => $val){

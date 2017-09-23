@@ -7,7 +7,7 @@ use Intervention\Image\ImageManager;
 
 class ImageController extends Controller
 {
-    //
+    //图片插件使用
     public function index(){
 
 
