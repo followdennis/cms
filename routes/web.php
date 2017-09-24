@@ -222,4 +222,11 @@ Route::any('category',['uses'=>'CategoryController@index','as'=>'category']);
 Route::any('json',['uses'=>'CategoryController@json','as'=>'json']);
 
 
-
+/**
+ * 正则匹配
+ */
+Route::group(['prefix'=>'regular'],function(){
+    Route::any('index',['uses'=>'RegularController@index']);
+    Route::any('index2',['uses'=>'RegularController@index2']);
+    Route::any('index3',['uses'=>'RegularController@index3']);
+});
