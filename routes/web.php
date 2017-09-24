@@ -230,3 +230,9 @@ Route::group(['prefix'=>'regular'],function(){
     Route::any('index2',['uses'=>'RegularController@index2']);
     Route::any('index3',['uses'=>'RegularController@index3']);
 });
+/**
+ * 机器学习
+ */
+Route::group(['prefix'=>'ai'],function(){
+    Route::any('/',['uses'=>'AIController@index']);
+});
