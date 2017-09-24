@@ -81,6 +81,7 @@ Route::any('tree_html',['uses'=>'AdminController@tree_html','as'=>'tree_html']);
  * 树结构测试
  */
 Route::any('tree',['uses'=>'TreeController@index','as'=>'tree']);
+Route::any('tree_menu',['uses'=>'TreeController@index','as'=>'tree']);
 
 
 //文章处理
