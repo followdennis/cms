@@ -236,3 +236,13 @@ Route::group(['prefix'=>'regular'],function(){
 Route::group(['prefix'=>'ai'],function(){
     Route::any('/',['uses'=>'AIController@index']);
 });
+
+
+/**
+ * 算法
+ * AlgorithmController
+ */
+
+Route::group(['prefix'=>'calculate'],function(){
+    Route::any('/',['uses'=>'AlgorithmController@index']);
+});
