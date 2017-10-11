@@ -19,5 +19,6 @@ class AIController extends Controller
 
         $data = $classifier->predict([3, 2]);
         echo $data;
+        //返回b
     }
 }

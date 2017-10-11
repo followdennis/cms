@@ -9,8 +9,7 @@ class AlgorithmController extends Controller
     //算法测试
     public $arr = [
         [1,2],
-        [3,4,5],
-        [6,7]
+        [3,4,5]
     ];
     public function index(){
         $arr = $this->arr;
@@ -22,15 +21,18 @@ class AlgorithmController extends Controller
             $a[$k]['n'] = 0;
             $all *= count($v);
         }
+        $new_arr = [];
+        for($i = 0; $i < $all; $i++){
+            $data = 0;
+            for($h = 0 ; $h < $height; $h++){
+//                $data +=$arr[$h][0];
 
-        for($h = 0; $h < $height; $h++){
-            $a[$h]['n']++;
-            if($a[$h]['n'] = $a[$h]['all']){
-                $a[$h]['n'] = 0;
-//                $a[$h+1]['n']++;
+                $data +=$arr[$h][0];
             }
+            array_push($new_arr,$data);
         }
-dd($a);
+
+dd($new_arr);
         for($n = 0; $n < $all; $n++){
 
         }
