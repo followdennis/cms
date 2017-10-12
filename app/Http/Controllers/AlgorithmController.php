@@ -27,7 +27,10 @@ class AlgorithmController extends Controller
             for($h = 0 ; $h < $height; $h++){
 //                $data +=$arr[$h][0];
 
-                $data +=$arr[$h][0];
+                for($a[$h]['n'] = 0; $a[$h]['n'] < $a[$h]['all'];$a[$h]['n']++){
+
+                }
+                $data +=$arr[$h][$a[$h]['n']];
             }
             array_push($new_arr,$data);
         }
@@ -37,5 +40,10 @@ dd($new_arr);
 
         }
     }
+    public function jump(){
+
+    }
+
+
 
 }
