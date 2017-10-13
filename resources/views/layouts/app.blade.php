@@ -92,6 +92,7 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+
     <script>
         $(function(){
             $(".panel-heading").click(function(e){

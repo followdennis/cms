@@ -26,10 +26,42 @@ EOF;
                 console.log(e);
                 return c;
             })()
-            alert(b);
-        }
 
-        aaa('123');
+        }
+    </script>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+        //控制全选，反选checkbox进行选择操作
+        //checkbox 批量处理插件  new
+        $.fn.selectCheckBox = function () {
+            var selectboxs = this;
+            return selectboxs.each(function (index) {
+                $(this).click(function () {
+                    if (index == 0 ) {
+                        if ($(this).is(':checked')) {
+                            selectboxs.prop("checked",'checked');
+                        } else {
+                            selectboxs.removeAttr("checked");
+                        }
+                    } else {
+                        if($(this).is(':checked')){
+                            var checked_length = $("input[type='checkbox']:checked").length;
+                            if(selectboxs.first().prop('checked') == false && (checked_length == selectboxs.length-1 )){
+                                selectboxs.first().prop("checked",'checked');
+                            }
+                        }else{
+                            selectboxs.first().removeAttr("checked");
+                        }
+                    }
+                });
+            });
+        };
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            $("input[type='checkbox']").selectCheckBox();
+        })
     </script>
     <div class="container-fluid">
         <div class="row">
@@ -250,7 +282,14 @@ EOF;
             </div>
         </div>
         <div class="col-md-10">
-            内容
+            <div class="col-md-5">
+                一：<input type="checkbox"><br/>
+            </div>
+            二：<input type="checkbox" name="super[]"><br/>
+            三：<input type="checkbox" name="super[]"><br/>
+            四：<input type="checkbox" name="super[]"><br/>
+            五：<input type="checkbox" name="super[]"><br/>
+            六：<input type="checkbox" name="super[]"><br/>
         </div>
     </div>
     <nav class="navbar navbar-default navbar-fixed-bottom">
@@ -258,7 +297,6 @@ EOF;
             固定底部
         </div>
     </nav>
-
 
 
 @endsection

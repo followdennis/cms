@@ -9,7 +9,8 @@ class AlgorithmController extends Controller
     //算法测试
     public $arr = [
         [1,2],
-        [3,4,5]
+        [3,4,5],
+        [7,8,9]
     ];
     public function index(){
         $arr = $this->arr;
@@ -30,20 +31,42 @@ class AlgorithmController extends Controller
                 for($a[$h]['n'] = 0; $a[$h]['n'] < $a[$h]['all'];$a[$h]['n']++){
 
                 }
-                $data +=$arr[$h][$a[$h]['n']];
+//                $data +=$arr[$h][$a[$h]['n']];
             }
             array_push($new_arr,$data);
         }
 
-dd($new_arr);
+
         for($n = 0; $n < $all; $n++){
 
         }
+        echo "<br/>";
+
+        $new_arr = $this->add($arr);
+        dd($new_arr);
     }
     public function jump(){
 
     }
 
+    function add($sets)
+    {
+        $result = array();
+        for ($i=0, $count=count($sets); $i<$count-1; $i++) {
+            if ($i == 0) {
+                $result = $sets[$i];
+            }
 
+            //保存临时数据
+            $tmp = array();
 
+            foreach ($result as $res) {
+                foreach ($sets[$i+1] as $set) {
+                    $tmp[] = $res+$set;
+                }
+            }
+            $result = $tmp;
+        }
+        return $result;
+    }
 }
