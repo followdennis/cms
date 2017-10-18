@@ -253,3 +253,10 @@ Route::group(['prefix'=>'calculate'],function(){
  */
 Route::any('doctor/{name?}/search','OneController@index');
 Route::any('actiontwo','TwoController@index');
+
+/**
+ * vue界面
+ */
+Route::any('vue',function(){
+    return view('vue.example');
+});
