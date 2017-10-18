@@ -56,10 +56,8 @@ class AlgorithmController extends Controller
             if ($i == 0) {
                 $result = $sets[$i];
             }
-
             //保存临时数据
             $tmp = array();
-
             foreach ($result as $res) {
                 foreach ($sets[$i+1] as $set) {
                     $tmp[] = $res+$set;

@@ -246,3 +246,10 @@ Route::group(['prefix'=>'ai'],function(){
 Route::group(['prefix'=>'calculate'],function(){
     Route::any('/',['uses'=>'AlgorithmController@index']);
 });
+
+/**
+ * 动态路由
+ * 这个路由必须定义才可以走
+ */
+Route::any('doctor/{name?}/search','OneController@index');
+Route::any('actiontwo','TwoController@index');
