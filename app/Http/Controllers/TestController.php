@@ -7,6 +7,7 @@ use GuzzleHttp\Pool;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise;
@@ -27,6 +28,9 @@ class TestController extends Controller
         config(['app.timezone'=>'America/Chicago']);
         $value = config('app.timezone');
         echo $value;
+        $list = DB::table('data_test')->pluck('cate')->toArray();
+        echo "<pre>";
+        print_r($list);
 
     }
     public function spider_test(){
