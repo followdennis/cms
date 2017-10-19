@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\DB;
 class DataTestController extends Controller
 {
     //
+    public function search(Request $request){
+        $method = empty($request->get('a')) ? 'get':$request->get('a');
+        echo $method;
+        $list = DB::table('data_test')->select('cate','num')->$method();
+        dd($list);
+    }
     function index(Request $request){
         //聚合排序
         $res = DB::table('data_test')
@@ -16,6 +22,7 @@ class DataTestController extends Controller
             ->orderBy('total','desc')
             ->get()->toArray();
 //        $res = $request->except('_method');
+
         echo "<pre>";
 //        print_r($res);
         //单词分界符
