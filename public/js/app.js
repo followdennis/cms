@@ -24753,13 +24753,22 @@ window.Vue = __webpack_require__(3);
  */
 
 Vue.component('example', __webpack_require__(100));
+Vue.component('eventtest', __webpack_require__(117));
+Vue.component('todo-item', {
+    props: ['todo'],
+    template: '<li>{{ todo.text }}</li>'
+
+});
  //引入element－ui
  //引入element－ui所需的css样式资源文件
 
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_element_ui___default.a); //把引入的ElementUI装入我们的Vue
 var app = new Vue({
-  el: '#app'
+    el: '#app',
+    data: {
+        groceryList: [{ id: 0, text: '蔬菜' }, { id: 1, text: '大西瓜' }, { id: 3, text: '奶酪' }]
+    }
 });
 
 /***/ }),
@@ -62347,8 +62356,6 @@ module.exports = function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "container"
   }, [_c('div', {
@@ -62361,8 +62368,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "panel-heading"
   }, [_vm._v("Example Component")]), _vm._v(" "), _c('div', {
     staticClass: "panel-body"
-  }, [_vm._v("\n                   这是一个vue组件!\n                   你好 哈喽\n                ")])])])])])
-}]}
+  }, [_vm._v("\n                   这是一个vue组件!\n                    " + _vm._s(_vm.message) + "\n                ")])])])])])
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -82017,7 +82024,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
         console.log('Component mounted.');
+    },
+
+    data: function data() {
+        return {
+            message: "abc"
+        };
     }
+
 });
 
 /***/ }),
@@ -82055,7 +82069,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * a simple convenience so we don't have to attach every token manually.
  */
 
-var token = document.head.querySelector('meta[name="csrf-token"]');
+// let token = document.head.querySelector('meta[name="csrf-token"]');
+var token = document.head.querySelector('meta[name="X-CSRF-TOKEN"]');
 
 if (token) {
   window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
@@ -82085,6 +82100,141 @@ if (token) {
 __webpack_require__(34);
 module.exports = __webpack_require__(33);
 
+
+/***/ }),
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(101)(
+  /* script */
+  __webpack_require__(119),
+  /* template */
+  __webpack_require__(118),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Applications/XAMPP/xamppfiles/htdocs/cms/resources/assets/js/components/event.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] event.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-77cdbd19", Component.options)
+  } else {
+    hotAPI.reload("data-v-77cdbd19", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 118 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "container"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-8 col-md-offset-2"
+  }, [_c('div', {
+    staticClass: "panel panel-default"
+  }, [_c('div', {
+    staticClass: "panel-heading"
+  }, [_vm._v(_vm._s(_vm.message))]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_c('button', {
+    on: {
+      "click": _vm.reverseMessage
+    }
+  }, [_vm._v("点击事件")])]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_c('p', [_vm._v(_vm._s(_vm.msg))]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.msg),
+      expression: "msg"
+    }],
+    domProps: {
+      "value": (_vm.msg)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.msg = $event.target.value
+      }
+    }
+  })])])])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-77cdbd19", module.exports)
+  }
+}
+
+/***/ }),
+/* 119 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        console.log('abc');
+    },
+
+    data: function data() {
+        return {
+            message: "你好",
+            msg: "hello input"
+        };
+    },
+    methods: {
+        reverseMessage: function reverseMessage() {
+            this.message = this.message.split('').reverse().join('');
+        }
+    }
+
+});
 
 /***/ })
 /******/ ]);

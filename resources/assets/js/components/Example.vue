@@ -7,7 +7,7 @@
 
                     <div class="panel-body">
                        这是一个vue组件!
-                       你好 哈喽
+                        {{ message }}
                     </div>
                 </div>
             </div>
@@ -19,6 +19,13 @@
     export default {
         mounted() {
             console.log('Component mounted.')
+        },
+        data:function(){
+            return {
+                message:"abc"
+            }
         }
+
     }
+
 </script>

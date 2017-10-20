@@ -49,6 +49,11 @@ class AlgorithmController extends Controller
 
     }
 
+    /**
+     * 非递归计算 选择功能
+     * @param $sets
+     * @return array
+     */
     function add($sets)
     {
         $result = array();
@@ -67,4 +72,5 @@ class AlgorithmController extends Controller
         }
         return $result;
     }
+
 }
