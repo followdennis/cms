@@ -7,6 +7,7 @@
 
                     <div class="panel-body">
                        这是一个vue组件!
+                       你好 哈喽
                     </div>
                 </div>
             </div>
