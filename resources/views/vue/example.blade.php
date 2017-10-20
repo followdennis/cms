@@ -10,6 +10,14 @@
 <body>
 <div id="app">
     <example></example>
+    <eventtest></eventtest>
+    <ul>
+        <todo-item
+                v-for="item in groceryList"
+                v-bind:todo="item"
+                v-bind:key="item.id">
+        </todo-item>
+    </ul>
 
 </div>
 
