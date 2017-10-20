@@ -7,6 +7,10 @@
 
                     <div class="panel-body">
                        这是一个vue组件!
+                       你好，我是vdddad
+                       <el-button>默认按钮</el-button>
+                       <el-button type="primary">主要按钮</el-button>
+                       <el-button type="text">按钮</el-button>
                     </div>
                 </div>
             </div>
