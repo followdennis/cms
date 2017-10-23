@@ -21,6 +21,8 @@ Route::get('/view',function(){
 Route::any('test','TestController@test');
 Route::any('/','TestController@test');
 Route::get('/home', 'HomeController@index');
+Route::get('/home2', 'HomeController@index2');
+
 Route::get('/detail','HomeController@detail');
 Route::any('sidebar',function(){
     return view('sidebar');
@@ -118,6 +120,7 @@ Route::any('search',['uses'=>'DataTestController@search','as'=>'search']);
  * 辅助
  */
 Route::any('auxiliary',['uses'=>'DataTestController@auxiliary','as'=>'auxiliary']);
+Route::any('sets',['uses'=>'DataTestController@sets','as'=>'sets']);
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

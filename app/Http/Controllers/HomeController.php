@@ -32,4 +32,11 @@ class HomeController extends Controller
         echo app('router')->getRoutes()->getByName('baidu_map')->uri();
         return view('home');
     }
+
+    public function index2()
+    {
+        $data['str'] = 'abc';
+        return view('home2',$data);
+    }
+
 }

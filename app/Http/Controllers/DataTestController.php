@@ -29,6 +29,16 @@ class DataTestController extends Controller
         );
 
     }
+    //集合交集
+    public function sets(){
+        $a1 = [1,2,3,4,5];
+        $a2 = [3,4,5,6];
+        $col1 = collect($a1);
+        $col2 = collect($a2);
+        $intersect = $col1->intersect($a2)->toArray();
+        echo "<Pre>";
+        print_r($intersect);
+    }
 
     function index(Request $request){
         //聚合排序
