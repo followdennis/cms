@@ -104,7 +104,7 @@ Route::get('queue_test',['uses'=>'QueueController@queue_test']);
  */
 Route::any('baidu_map',['uses'=>'BaiDuMapController@index','as'=>'baidu_map']);
 
-Route::any('route_test/{province?}/{city?}/{district?}',['uses'=>'TestController@route_test']);
+Route::any('route_test/{province?}/{city?}/{district?}',['uses'=>'TestController@route_test','as'=>'reoute_tes']);
 
 /**
  * 聚合函数测试
