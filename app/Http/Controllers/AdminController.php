@@ -43,7 +43,7 @@ class AdminController extends Controller
         $rawdata = new RawData();
 
         $users = DB::table('lizhi')
-            ->select('id','title','content','tags')
+            ->select('id','title','content')
             ->get();
 
         $url = route('index',['cate1'=>'aaa','cate2'=>'bbb','p'=>10]);
@@ -51,6 +51,7 @@ class AdminController extends Controller
 
         $curRoute = Route::Current()->getName();
         echo $curRoute;
+        echo "<br/>";
 //        dd(Route::Current());
 //        dd($curRoute);
         echo $url;

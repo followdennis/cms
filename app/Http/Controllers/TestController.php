@@ -8,6 +8,7 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Route;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise;
@@ -160,6 +161,8 @@ class TestController extends Controller
     public function route_test($province = 'jiangsu',$city='',$district = ''){
         echo '路由测试';
         echo $province.'-'.$city.'-'.$district;
+        echo "<br/>";
+        echo $curRoute = Route::Current()->getName();
     }
 
 }
