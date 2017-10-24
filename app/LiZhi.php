@@ -14,4 +14,13 @@ class LiZhi extends Model
         return DB::table($this->table)
             ->get();
     }
+    public function insertData($params = array()){
+        $save = DB::table('lizhi')->insert($params);
+        if($save){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
