@@ -2,11 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Chefs;
+use App\Dog;
+use App\LiZhi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DataTestController extends Controller
 {
+
+    //测试关联模型
+    public function assoc_mode(){
+        //hasmany
+        $data = Chefs::find(3)->dogs()->select('dog_name','owner_id')->get()->toArray();
+        //belongsto
+        //注意：这个反向操作的时候，反而不需要括号，因为只有一个
+        $data = Dog::find(3)->owner->chef_name;
+
+        //渴求式查询
+        $chefs = Chefs::has('dogs')->get();
+        dd($chefs);
+
+    }
     //
     public function search(Request $request){
         $method = empty($request->get('a')) ? 'get':$request->get('a');
@@ -27,7 +44,6 @@ class DataTestController extends Controller
                 3=>"eee"
             )
         );
-
     }
     public function get_article(){
 //        $data = DB::table('article_number as an')
@@ -50,6 +66,35 @@ class DataTestController extends Controller
         $intersect = $col1->intersect($a2)->toArray();
         echo "<Pre>";
         print_r($intersect);
+    }
+    public function cross_insert(LiZhi $lizhi,Chefs $chef){
+        $chef_info = [
+            'chef_name'=>'厨师姓名',
+            'like_num'=>10,
+            'content'=>'wu',
+            'click'=>10
+        ];
+        $lizhi_info = [
+            'name'=>'名字',
+            'title'=>'标题',
+            'content'=>'内容测试',
+            'click'=>10,
+            'cate'=>'分类'
+        ];
+        DB::beginTransaction();
+        $chef_state = $chef->insertData($chef_info);
+        $lizhi_state = $lizhi->insertData($lizhi_info);
+
+
+        if($chef_state && $lizhi_state){
+            echo "ok";
+            DB::commit();
+        }else{
+            echo "failure";
+            DB::rollback();
+        }
+
+
     }
 
     function index(Request $request){

@@ -46,15 +46,15 @@ class AdminController extends Controller
             ->select('id','title','content')
             ->get();
 
-        $url = route('index',['cate1'=>'aaa','cate2'=>'bbb','p'=>10]);
+//        $url = route('index',['cate1'=>'aaa','cate2'=>'bbb','p'=>10]);
 
 
-        $curRoute = Route::Current()->getName();
-        echo $curRoute;
+//        $curRoute = Route::Current()->getName();
+//        echo $curRoute;
         echo "<br/>";
 //        dd(Route::Current());
 //        dd($curRoute);
-        echo $url;
+//        echo $url;
         echo "<br/>";
         echo "数据库1";
 //        echo Auth::user()->name;
@@ -72,8 +72,10 @@ class AdminController extends Controller
              $item->title='这是标题';
              $item->content = '文章内容';
              $item->cate1 = '分类一';
+            $item->key = $key;
             return $item;
         });
+        dd($rd);
         echo "<br/>";
         echo "<pre>";
 //        print_r($rd);
