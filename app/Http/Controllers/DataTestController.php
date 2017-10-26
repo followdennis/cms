@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Chefs;
+use App\Dog;
 use App\LiZhi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,8 +13,16 @@ class DataTestController extends Controller
 
     //测试关联模型
     public function assoc_mode(){
+        //hasmany
         $data = Chefs::find(3)->dogs()->select('dog_name','owner_id')->get()->toArray();
-        dd($data);
+        //belongsto
+        //注意：这个反向操作的时候，反而不需要括号，因为只有一个
+        $data = Dog::find(3)->owner->chef_name;
+
+        //渴求式查询
+        $chefs = Chefs::has('dogs')->get();
+        dd($chefs);
+
     }
     //
     public function search(Request $request){

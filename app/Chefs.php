@@ -27,8 +27,15 @@ class Chefs extends Model
     public function dog(){
         return $this->hasOne('App\Dog','owner_id');
     }
+    //hasmanny和hason差不多
     public function dogs(){
         return $this->hasMany('App\Dog','owner_id');
+    }
+    //多对多的关系
+    //belongsToMany
+    public function manydogs(){
+//        return $this->belongsToMany('App\Dog','中间表名字','关联id','关联id');
+//        pivot属性 只有主键才可以通过pivot来调用，否则要指定一下 ->withPivot('colomn1','column2');
     }
 
 
