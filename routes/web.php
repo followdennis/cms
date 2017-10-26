@@ -110,6 +110,7 @@ Route::any('route_test/{province?}/{city?}/{district?}',['uses'=>'TestController
  * 聚合函数测试
  */
 Route::any('data_test',['uses'=>'DataTestController@index']);
+Route::any('get_article',['uses'=>'DataTestController@get_article']);
 
 Route::any('regular_test',['uses'=>'DataTestController@regular_test','as'=>'regular_test']);
 Route::any('ftest',['uses'=>'DataTestController@ftest','as'=>'f_test']);

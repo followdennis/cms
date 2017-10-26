@@ -29,6 +29,18 @@ class DataTestController extends Controller
         );
 
     }
+    public function get_article(){
+//        $data = DB::table('article_number as an')
+//            ->leftJoin('data_test as dt','an.id','=','dt.id')
+//            ->where('an.id','=',3468652)
+//            ->first();
+
+        $num = DB::table('article_number as an')->where('id',2868652)->first();
+        $data = DB::table('data_test')->where('id',$num->id)->first();
+        echo "<pre>";
+
+        print_r($data);
+    }
     //集合交集
     public function sets(){
         $a1 = [1,2,3,4,5];
