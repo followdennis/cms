@@ -111,6 +111,7 @@ Route::any('route_test/{province?}/{city?}/{district?}',['uses'=>'TestController
  */
 Route::any('page_and_sum',['uses'=>'DataTestController@page_and_sum']);//测试关联模型
 Route::any('assoc_mode',['uses'=>'DataTestController@assoc_mode']);//测试关联模型
+Route::any('instance_reuse',['uses'=>'DataTestController@instance_use']);//一个实例多次使用
 Route::any('data_test',['uses'=>'DataTestController@index']);
 Route::any('collect_test',['uses'=>'DataTestController@collect_merge']);//集合合并测试
 

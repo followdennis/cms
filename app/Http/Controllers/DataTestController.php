@@ -10,6 +10,21 @@ use Illuminate\Support\Facades\DB;
 
 class DataTestController extends Controller
 {
+    //where条件，一个实例多次调用
+    public function instance_use(){
+        $instance = DB::table('lizhi');
+        $instance1 = $instance;
+        $instance2 = clone $instance;
+        $data1 = $instance1->where('title','like','%丁磊%')->take(5)->get();
+        $data2 = $instance2->where('title','like','%马云%')->take(5)->get();
+        foreach($data1 as $k => $v){
+            echo $v->id.$v->title."<br/>";
+        }
+        echo "hello<br/>";
+        foreach($data2 as $k => $v){
+            echo $v->id.$v->title."<br/>";
+        }
+    }
     //分页的同时统计数据
     public function page_and_sum(){
         $data = DB::table('article_number')->paginate(10);
