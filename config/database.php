@@ -74,7 +74,7 @@ return [
             'password' => env('DB_PASSWORD_CENTER', ''),
             'charset' => 'utf8',
             'collation' => 'utf8_general_ci',
-            'prefix' => '',
+            'prefix' => 'site_db_',
             'strict' => false,
             'engine' => null,
         ],

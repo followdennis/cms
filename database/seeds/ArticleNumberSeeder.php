@@ -17,10 +17,13 @@ class ArticleNumberSeeder extends Seeder
         for($i = 1 ; $i< 5000001; $i++){
             $now = \Carbon\Carbon::now()->format('Y-m-d H:i:s');
             array_push($data,[
+                'cate_id'=>mt_rand(1,10),
                 'created_at'=>$now
             ]);
-            if($i % 5000 == 0){
+            if($i % 1000 == 0){
+                \DB::beginTransaction();
                \DB::table('article_number')->insert($data);
+               \DB::commit();
                 $data = [];
             }
         }

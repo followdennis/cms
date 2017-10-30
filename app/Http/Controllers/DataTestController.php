@@ -10,7 +10,30 @@ use Illuminate\Support\Facades\DB;
 
 class DataTestController extends Controller
 {
-
+    //分页的同时统计数据
+    public function page_and_sum(){
+        $data = DB::table('article_number')->paginate(10);
+        $sum =  DB::table('article_number')->sum('cate_id');
+        echo "<br/>";
+       echo $sum;
+    }
+    //果然集合可以合并
+    public function collect_merge(){
+        $list1 = DB::table('lizhi')->whereIn('id',[58560,58561,58562,58563])->get();
+        $list2 = DB::table('lizhi_2')->whereIn('id',[58564,58565,58566,58567])->get();
+        echo "合并结合测试<br/>";
+        foreach($list1 as $k => $v){
+            echo $v->id.$v->title."<br/>";
+        }
+        foreach($list2 as $k => $v){
+            echo $v->id.$v->title."<br/>";
+        }
+        echo "<br/>";
+        $merge = $list1->merge($list2);
+        foreach($merge as $k => $v){
+            echo $v->id.$v->title."<br/>";
+        }
+    }
     //测试关联模型
     public function assoc_mode(){
         //hasmany

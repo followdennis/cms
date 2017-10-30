@@ -109,8 +109,10 @@ Route::any('route_test/{province?}/{city?}/{district?}',['uses'=>'TestController
 /**
  * 聚合函数测试
  */
+Route::any('page_and_sum',['uses'=>'DataTestController@page_and_sum']);//测试关联模型
 Route::any('assoc_mode',['uses'=>'DataTestController@assoc_mode']);//测试关联模型
 Route::any('data_test',['uses'=>'DataTestController@index']);
+Route::any('collect_test',['uses'=>'DataTestController@collect_merge']);//集合合并测试
 
 Route::any('get_article',['uses'=>'DataTestController@get_article']);
 

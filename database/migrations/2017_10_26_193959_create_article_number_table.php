@@ -16,6 +16,7 @@ class CreateArticleNumberTable extends Migration
         Schema::create('article_number', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->smallInteger('cate_id')->default(0)->comment('分类id');
             $table->timestamps();
             $table->softDeletes();
         });
