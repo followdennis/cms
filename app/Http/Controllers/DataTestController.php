@@ -12,10 +12,30 @@ class DataTestController extends Controller
 {
     //分页的同时统计数据
     public function page_and_sum(){
-        $data = DB::table('article_number')->paginate(10);
-        $sum =  DB::table('article_number')->sum('cate_id');
+        $model = DB::table('article_number')->where('cate_id','>',5);
+        $sum =  $model->sum('cate_id');
+        $avg = $model ->avg('cate_id');
+        $max = $model->max('cate_id');
+        $data = $model->paginate(10);
+        $result = [
+            'total'=>$data->total(),
+            'perPage' => $data->perPage(),
+            'currentPage' => $data->currentPage(),
+            'lastPage' => $data->lastPage(),
+            'from' => $data->firstItem(),
+            'to' => $data->lastItem(),
+            'items' => []
+        ];
+        foreach($data as $k =>$v){
+            echo $v->id.$v->cate_id."<br/>";
+        }
+
         echo "<br/>";
        echo $sum;
+        echo "<br/>";
+        echo $avg;
+        echo "<br/>";
+        echo $max;
     }
     //果然集合可以合并
     public function collect_merge(){

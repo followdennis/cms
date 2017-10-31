@@ -14,7 +14,7 @@ class ArticleNumberSeeder extends Seeder
     {
         //填充500万条数据
         $data = [];
-        for($i = 1 ; $i< 5000001; $i++){
+        for($i = 1 ; $i< 5000; $i++){
             $now = \Carbon\Carbon::now()->format('Y-m-d H:i:s');
             array_push($data,[
                 'cate_id'=>mt_rand(1,10),
