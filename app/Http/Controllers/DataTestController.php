@@ -36,6 +36,7 @@ class DataTestController extends Controller
         echo $avg;
         echo "<br/>";
         echo $max;
+        echo "<br/>";
     }
     //果然集合可以合并
     public function collect_merge(){
