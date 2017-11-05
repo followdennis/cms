@@ -10,6 +10,34 @@ use Illuminate\Support\Facades\DB;
 
 class DataTestController extends Controller
 {
+    //分页管理
+    public function page_manage(){
+        $time = microtime(true);
+        $record = DB::table('article_number')->where('cate_id',9)->select('id')->paginate(10)->toArray();
+//        $record2 = DB::table('article_number')->where('cate_id',5)->select('id')->paginate(10);
+
+
+        $end = microtime(true);
+        echo $end-$time;
+        dd($record);
+        return view('home',['record'=>$record]);
+    }
+
+    //array_walk和array_map相似但 array_walk更全
+    public function arr_test(){
+        $record = DB::table('lizhi')->take(100)->get();
+        $data = [];
+        $arr = [
+            ['a'=>111,'b'=>222],
+            ['a'=>333,'b'=>444]
+        ];
+        $new_arr = [];
+        array_walk($arr,function($value,$key)use(&$new_arr){
+            $new_arr[] = $value['a'];
+        });
+        echo "<br/>halou";
+        print_r($new_arr);
+    }
     //where条件，一个实例多次调用
     public function instance_use(){
         $instance = DB::table('lizhi');
@@ -27,13 +55,15 @@ class DataTestController extends Controller
     }
     //分页的同时统计数据
     public function page_and_sum(){
-        $data = DB::table('article_number')->paginate(10);
-        $sum =  DB::table('article_number')->sum('cate_id');
+        $model = DB::table('article_number')->where('cate_id',1);
+        $data = $model->paginate(10);
+        $sum =  $model->sum('cate_id');
         echo "<br/>";
        echo $sum;
     }
-    //果然集合可以合并
+    //果然集合可以合并 collect_test
     public function collect_merge(){
+
         $list1 = DB::table('lizhi')->whereIn('id',[58560,58561,58562,58563])->get();
         $list2 = DB::table('lizhi_2')->whereIn('id',[58564,58565,58566,58567])->get();
         echo "合并结合测试<br/>";
@@ -131,8 +161,6 @@ class DataTestController extends Controller
             echo "failure";
             DB::rollback();
         }
-
-
     }
 
     function index(Request $request){

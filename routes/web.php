@@ -109,6 +109,8 @@ Route::any('route_test/{province?}/{city?}/{district?}',['uses'=>'TestController
 /**
  * 聚合函数测试
  */
+Route::any('page_manage',['uses'=>'DataTestController@page_manage']);//分页使用
+Route::any('arr_test',['uses'=>'DataTestController@arr_test']);//测试关联模型
 Route::any('page_and_sum',['uses'=>'DataTestController@page_and_sum']);//测试关联模型
 Route::any('assoc_mode',['uses'=>'DataTestController@assoc_mode']);//测试关联模型
 Route::any('instance_reuse',['uses'=>'DataTestController@instance_use']);//一个实例多次使用
@@ -121,6 +123,11 @@ Route::any('regular_test',['uses'=>'DataTestController@regular_test','as'=>'regu
 Route::any('ftest',['uses'=>'DataTestController@ftest','as'=>'f_test']);
 Route::any('search',['uses'=>'DataTestController@search','as'=>'search']);
 Route::any('cross_insert',['uses'=>'DataTestController@cross_insert','as'=>'cross_insert']);
+/**
+ * 常用函数封装
+ */
+Route::any('func',['uses'=>'CommonFuncController@index']);
+
 /**
  * 辅助
  */

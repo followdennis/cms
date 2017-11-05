@@ -282,14 +282,14 @@ EOF;
             </div>
         </div>
         <div class="col-md-10">
-            <div class="col-md-5">
-                一：<input type="checkbox"><br/>
+            <div class="col-md-10">
+                    {{--{{ $record->links() }}--}}
             </div>
-            二：<input type="checkbox" name="super[]"><br/>
-            三：<input type="checkbox" name="super[]"><br/>
-            四：<input type="checkbox" name="super[]"><br/>
-            五：<input type="checkbox" name="super[]"><br/>
-            六：<input type="checkbox" name="super[]"><br/>
+            {{--@foreach($record as $k => $v)--}}
+                {{--{{ $v->id }}<br/>--}}
+                {{--<br/>--}}
+            {{--@endforeach--}}
+
         </div>
     </div>
     <nav class="navbar navbar-default navbar-fixed-bottom">
