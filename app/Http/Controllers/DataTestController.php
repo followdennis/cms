@@ -32,7 +32,11 @@ class DataTestController extends Controller
 
         $end = microtime(true);
         echo $end-$time;
-        dd($record);
+        echo "<pre>";
+        foreach($record as $v){
+
+            print_r($v);
+        }
         return view('home',['record'=>$record]);
     }
 
