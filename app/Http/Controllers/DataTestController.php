@@ -10,12 +10,29 @@ use Illuminate\Support\Facades\DB;
 
 class DataTestController extends Controller
 {
+
+    //将对象放到数组中，遍历进行合并
+    public function data_merge(){
+        $data = [];
+        $ids = [1,2,3];
+        foreach($ids as $id){
+            $record = DB::table('menus')->where('id',$id)->get();
+            array_push($data,$record);
+        }
+        $collect = collect([]);
+        foreach($data as $col){
+            $collect = $collect->merge($col);
+        }
+        foreach($collect as $k=>$v){
+            echo $v->id.$v->catename."<br/>";
+        }
+
+    }
     //分页管理
     public function page_manage(){
         $time = microtime(true);
         $record = DB::table('article_number')->where('cate_id',9)->select('id')->paginate(10)->toArray();
 //        $record2 = DB::table('article_number')->where('cate_id',5)->select('id')->paginate(10);
-
 
         $end = microtime(true);
         echo $end-$time;

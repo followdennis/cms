@@ -49,6 +49,7 @@ class TestController extends Controller
     //
     public function test(){
 
+
 //        $url = 'www.baidu.www.com.cn';
 //        $pattern = '/^(?:\w+\.)*?(\w+)\.(?:com.cn|cn|com|net)/';
 //        echo $url.'<br/>';

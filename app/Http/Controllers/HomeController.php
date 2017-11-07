@@ -25,6 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         echo Auth::user()->id;
 //        dd(\Route::has('test'));
         echo route('baidu_map');

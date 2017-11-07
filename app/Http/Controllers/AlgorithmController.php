@@ -12,6 +12,19 @@ class AlgorithmController extends Controller
         [3,4,5],
         [7,8,9]
     ];
+    //升序数字是否连续
+    public function is_continuity($num = [1,2,9,3,5,4,6]){
+        sort($num);
+        $last = last($num);
+        $head = head($num);
+        if(count($num) == ($last-$head+1)){
+            echo "连续";
+        }else{
+            echo "间断";
+        }
+    }
+
+    //
     public function index(){
         $arr = $this->arr;
         $a = [];

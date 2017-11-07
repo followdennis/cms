@@ -109,6 +109,7 @@ Route::any('route_test/{province?}/{city?}/{district?}',['uses'=>'TestController
 /**
  * 聚合函数测试
  */
+Route::any('data_merge',['uses'=>'DataTestController@data_merge']);//多个实例合并
 Route::any('page_manage',['uses'=>'DataTestController@page_manage']);//分页使用
 Route::any('arr_test',['uses'=>'DataTestController@arr_test']);//测试关联模型
 Route::any('page_and_sum',['uses'=>'DataTestController@page_and_sum']);//测试关联模型
@@ -262,6 +263,7 @@ Route::group(['prefix'=>'ai'],function(){
 
 Route::group(['prefix'=>'calculate'],function(){
     Route::any('/',['uses'=>'AlgorithmController@index']);
+    Route::any('/is_continuity','AlgorithmController@is_continuity');
 });
 
 /**
@@ -277,3 +279,8 @@ Route::any('actiontwo','TwoController@index');
 Route::any('vue',function(){
     return view('vue.example');
 });
+
+/**
+ * 搜索功能算法
+ */
+Route::any('search','SearchController@index');
