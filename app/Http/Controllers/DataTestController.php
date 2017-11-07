@@ -20,11 +20,9 @@ class DataTestController extends Controller
             $record = DB::table('menus')->where('id',$id)->get();
             $collect = $collect->merge($record);
         }
-
         foreach($collect as $k=>$v){
             echo $v->id.$v->catename."<br/>";
         }
-
     }
     //分页管理
     public function page_manage(){

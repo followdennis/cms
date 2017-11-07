@@ -12,6 +12,12 @@ class AlgorithmController extends Controller
         [3,4,5],
         [7,8,9]
     ];
+
+    //切割数组
+    public function div_arr(){
+        $arr = [1,2,3,4,5,6,7,9,10,11,12,16,17,18,20,21];
+
+    }
     //升序数字是否连续
     public function is_continuity($num = [1,2,9,3,5,4,6]){
         sort($num);
