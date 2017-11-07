@@ -15,14 +15,12 @@ class DataTestController extends Controller
     public function data_merge(){
         $data = [];
         $ids = [1,2,3];
+        $collect = collect([]);
         foreach($ids as $id){
             $record = DB::table('menus')->where('id',$id)->get();
-            array_push($data,$record);
+            $collect = $collect->merge($record);
         }
-        $collect = collect([]);
-        foreach($data as $col){
-            $collect = $collect->merge($col);
-        }
+
         foreach($collect as $k=>$v){
             echo $v->id.$v->catename."<br/>";
         }
