@@ -284,3 +284,8 @@ Route::any('vue',function(){
  * 搜索功能算法
  */
 Route::any('search','SearchController@index');
+
+/**
+ * 生成页面
+ */
+Route::any('html','HtmlController@index');
