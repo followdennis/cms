@@ -289,3 +289,8 @@ Route::any('search','SearchController@index');
  * 生成页面
  */
 Route::any('html','HtmlController@index');
+
+/**
+ * vue数据获取
+ */
+Route::any('vue_data','VueController@index');

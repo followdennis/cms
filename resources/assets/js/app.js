@@ -25,7 +25,8 @@ Vue.component('todo-item',{
 import ElementUI from 'element-ui'    //引入element－ui
 import 'element-ui/lib/theme-default/index.css' //引入element－ui所需的css样式资源文件
 
-
+import VueResource from 'vue-resource'
+Vue.use(VueResource);
 Vue.use(ElementUI)    //把引入的ElementUI装入我们的Vue
 const app = new Vue({
     el: '#app',
