@@ -6,7 +6,7 @@
                     <div class="panel-heading">Example Component</div>
 
                     <div class="panel-body">
-                       这是一个vue组件!
+                      world            bbb
 
                        数据调用
                        <el-button>默认按钮</el-button>

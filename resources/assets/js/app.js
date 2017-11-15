@@ -27,8 +27,7 @@ import ElementUI from 'element-ui'    //引入element－ui
 import 'element-ui/lib/theme-default/index.css' //引入element－ui所需的css样式资源文件
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
-
-import axios from 'axios';
+import axios from 'axios'
 
 
 const Foo = {template:'<div>foo</div>'};
@@ -39,6 +38,7 @@ const routes = [
     {path:'/bar',component:Bar}
 ];
 const router = new VueRouter({
+    mode:'history',
     routes
 });
 

@@ -12,7 +12,7 @@
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" v-model="name"placeholder="Email">
+            <input type="email" class="form-control" id="exampleInputEmail1" v-model="name" placeholder="Email">
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
@@ -20,7 +20,7 @@
           </div>
           <div class="form-group">
                       <label for="exampleInputName">name</label>
-                      <input type="text" class="form-control" id="exampleInputPassword1" v-model="name" placeholder="name">
+                      <input type="text" class="form-control" id="exampleInputPassword1" v-model="name"  placeholder="name">
           </div>
           <div class="checkbox">
             <label>
