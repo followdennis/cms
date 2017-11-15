@@ -22,14 +22,33 @@ Vue.component('todo-item',{
     template:'<li>{{ todo.text }}</li>'
 
 });
+Vue.component('user-form',require('./components/Form.vue'));
 import ElementUI from 'element-ui'    //引入element－ui
 import 'element-ui/lib/theme-default/index.css' //引入element－ui所需的css样式资源文件
-
+import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+
+import axios from 'axios';
+
+
+const Foo = {template:'<div>foo</div>'};
+const Bar = {template:'<div>bar</div>'};
+
+const routes = [
+    {path:'/foo',component:Foo},
+    {path:'/bar',component:Bar}
+];
+const router = new VueRouter({
+    routes
+});
+
+
 Vue.use(VueResource);
-Vue.use(ElementUI)    //把引入的ElementUI装入我们的Vue
+Vue.use(ElementUI);    //把引入的ElementUI装入我们的Vue
+Vue.use(VueRouter);
 const app = new Vue({
     el: '#app',
+    router,
     data:{
         groceryList:[
             {id:0,text:'蔬菜'},

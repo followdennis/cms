@@ -279,6 +279,9 @@ Route::any('actiontwo','TwoController@index');
 Route::any('vue',function(){
     return view('vue.example');
 });
+Route::any('vue_form',function(){
+    return view('vue.index');
+});
 
 /**
  * 搜索功能算法

@@ -26,6 +26,13 @@
                     </tr>
                     </table>
                 </div>
+                <div>
+                    <router-link to="/foo">goto Foo</router-link>
+                    <router-link to="/bar">goto Bar</router-link>
+                    <br/>
+                    <router-view></router-view>
+                </div>
+
             </div>
         </div>
     </div>
@@ -39,32 +46,18 @@
         data:function(){
             return {
                 message:"abc",
-                data:""
+                data:{}
             }
         },
         created: function() {
-              this.$http.get('/vue_data',
-                  {
-                      productType:"1",
-                      pageNum:1,
-                      pageLimit:8
-                  },
-                  {
-                    headers:{
 
-                    },
-                    emulateJSON: true
-                  }
-
-              ).then((response) => {
-                var json = response.bodyText;
-                var usedData= JSON.parse(json);
-                this.data = usedData;
-              }).catch(function(response) {
-                console.log(response)
+              axios.get('/vue_data').then((response) =>{
+                    var json = response.data;
+                    this.data = json;
+              }).catch(function(error){
+                console.log(error);
               });
         }
-
     }
 
 </script>
