@@ -86633,7 +86633,60 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.name = $event.target.value
       }
     }
-  })]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('button', {
+  })]), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "checkbox"
+  }, [_c('label'), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.selected),
+      expression: "selected"
+    }],
+    staticClass: "form-control",
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.selected = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "",
+      "disabled": ""
+    }
+  }, [_vm._v("1,选项")]), _vm._v(" "), _vm._l((_vm.options), function(option) {
+    return _c('option', {
+      domProps: {
+        "value": option.value
+      }
+    }, [_vm._v("\n                            " + _vm._s(option.text) + "\n                         ")])
+  })], 2), _vm._v(" "), _c('span', [_vm._v("\n                       " + _vm._s(_vm.selected) + "\n                       ")])])]), _vm._v(" "), _c('el-select', {
+    attrs: {
+      "placeholder": "请选择"
+    },
+    model: {
+      value: (_vm.selected),
+      callback: function($$v) {
+        _vm.selected = $$v
+      },
+      expression: "selected"
+    }
+  }, _vm._l((_vm.options), function(item) {
+    return _c('el-option', {
+      key: item.value,
+      attrs: {
+        "label": item.label,
+        "value": item.value
+      }
+    })
+  })), _vm._v(" "), _c('button', {
     staticClass: "btn btn-default",
     attrs: {
       "type": "submit"
@@ -86641,7 +86694,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.doSub
     }
-  }, [_vm._v("Submit")])])
+  }, [_vm._v("Submit")])], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('thead', [_c('tr', [_c('td', [_vm._v("id")]), _c('td', [_vm._v("title")])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -86714,6 +86767,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -86724,7 +86801,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             message: "abc",
             data: "",
-            name: ""
+            name: "",
+            selected: "bbb",
+            options: [{ text: 'one', value: 'a', label: '标签' }, { text: 'two', value: 'b', label: '标签2' }, { text: 'three', value: 'c', label: '标签3' }],
+            user: {
+                name: "xiaoming",
+                age: 18
+            }
         };
     },
     created: function created() {
@@ -86740,9 +86823,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         doSub: function doSub(event) {
-            alert(this.name);
+            //alert(JSON.stringify(this.user));
+            alert(this.selected);
+        },
+        doChange: function doChange(event) {
+            alert(this.value);
+        }
+
+    },
+    computed: {
+        test: function test() {
+            alert('ok');
         }
     }
+
 });
 
 /***/ })

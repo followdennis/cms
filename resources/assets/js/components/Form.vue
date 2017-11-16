@@ -27,6 +27,30 @@
               <input type="checkbox"> Check me out
             </label>
           </div>
+          <div class="checkbox">
+                      <label>
+
+                      </label>
+                      <div class="form-group" >
+                           <select class="form-control" v-model="selected">
+                             <option value="" disabled>1,选项</option>
+                             <option v-for="option in options" v-bind:value="option.value">
+                                {{ option.text }}
+                             </option>
+                           </select>
+                           <span>
+                           {{ selected}}
+                           </span>
+                      </div>
+          </div>
+          <el-select v-model="selected"  placeholder="请选择">
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
           <button type="submit" @click="doSub" class="btn btn-default">Submit</button>
     </div>
 </template>
@@ -39,7 +63,17 @@ export default{
         return {
             message:"abc",
             data:"",
-            name:""
+            name:"",
+            selected:"bbb",
+            options:[
+                {text:'one',value:'a',label:'标签'},
+                {text:'two',value:'b',label:'标签2'},
+                {text:'three',value:'c',label:'标签3'}
+            ],
+            user:{
+                name:"xiaoming",
+                age:18
+                }
         }
     },
     created: function() {
@@ -54,8 +88,19 @@ export default{
     },
     methods:{
         doSub:function(event){
-            alert(this.name);
+            //alert(JSON.stringify(this.user));
+            alert(this.selected);
+        },
+        doChange:function(event){
+            alert(this.value);
+        }
+
+    },
+    computed:{
+        test:function(){
+            alert('ok');
         }
     }
+
 }
 </script>
