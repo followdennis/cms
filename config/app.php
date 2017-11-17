@@ -181,6 +181,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         App\Providers\RiakServiceProvider::class,
+        Overtrue\LaravelUEditor\UEditorServiceProvider::class,//ueditor
 
 
     ],
