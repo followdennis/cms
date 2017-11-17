@@ -11,4 +11,8 @@ class OneController extends Controller
     public function index(){
         echo $curRoute = Route::Current()->getName();
     }
+    //百度编辑器使用
+    public function ueditor(){
+        return view('ueditor');
+    }
 }
