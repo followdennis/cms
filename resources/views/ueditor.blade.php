@@ -64,47 +64,8 @@
         }
     </style>
     <script>
-        var  url = {
-            list:{
-                fetch:'{{ route('regular_test') }}',
-            }
-        };
 
-        //http://www.cms.cc/regular_test
-        var jsRoute = function jsRoute(routeUrl,param){
-            var append = [];
-            for(var x in param){
-                var search = '{'+x+'}';
-                if(routeUrl.indexOf(search) >= 0){
-                    routeUrl = routeUrl.replace('{'+x+'}',param[x]);
-                }else{
-                    append.push( x + '=' + param[x]);
-                }
-            }
-//                var url = '/'+_.trimStart(routeUrl,'/');
 
-            var url = routeUrl;
-            if(append.length == 0){
-                return url;
-            }
-            if(url.indexOf('?') >=0){
-                url +='&';
-            }else{
-                url += '?';
-            }
-            url += append.join('&');
-            return url;
-        }
-        var mark = {
-            name:'aaa',
-            age:20
-        };
-        var content = document.createElement('div');
-        content.innerHTML = '宝岛台湾';
-        content.className = 'taiwan';
-        mark.name = 'bbb';
-        mark.content = content;
-        console.log(mark);
 
     </script>
     {{--生成二维码的js插件--}}
@@ -116,21 +77,44 @@
 
         })
     </script>
+@include('vendor.ueditor.assets')
+
+    <!-- 编辑器容器 -->
 </head>
 <body>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+    for( var i = 1; i<= '{{ $num }}'; i++){
+        var ue = UE.getEditor('container'+i);
+        initialFrameWidth : 900;//文本框宽和高
+        initialFrameHeight : 350;//文本框宽和高
+        autoHeight:false;
+        ue.ready(function() {
+            ue.execCommand('serverparam', '_token', '{{ csrf_token() }}'); // 设置 CSRF token.
+        });
+    }
+
+</script>
 <div class="flex-center position-ref full-height">
     <div class="content">
         <div class="title m-b-md">
            ueditor使用
         </div>
+
         <div>
             <div id="code"></div>
             <div>
 
             </div>
         </div>
-        <div class="links">
-
+        @for( $i = 1 ; $i <= $num; $i++)
+        <form action="ueditor" method="post">
+            {{ csrf_field() }}
+            <script id="container{{$i}}" name="content" type="text/plain" style="width:400px;"></script>
+            <button type="submit">提交</button>
+        </form>
+        @endfor
+        <div class="links" >
         </div>
     </div>
 </div>

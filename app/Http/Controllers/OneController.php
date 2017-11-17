@@ -12,7 +12,12 @@ class OneController extends Controller
         echo $curRoute = Route::Current()->getName();
     }
     //百度编辑器使用
-    public function ueditor(){
-        return view('ueditor');
+    public function ueditor(Request $request){
+        if($request->isMethod('post')){
+          info($request->get('content'));
+        }
+        $num = 5;
+        $b = 1;
+        return view('ueditor',['num'=>$num]);
     }
 }
