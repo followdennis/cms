@@ -23,6 +23,7 @@ class QueueTest
     public function __construct(Chefs $chefs)
     {
         //
+
         $this->chefsEvent = $chefs;
     }
 

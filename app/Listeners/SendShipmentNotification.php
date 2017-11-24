@@ -7,7 +7,7 @@ use Illuminate\Contracts\Cache\Store;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendShipmentNotification implements ShouldQueue
+class SendShipmentNotification
 {
     protected $session;
     /**
@@ -33,6 +33,9 @@ class SendShipmentNotification implements ShouldQueue
         $lizhi = $event->lizhiEvent;
         $lizhi->click = $lizhi->click + 1;
         $lizhi->save();
+
+    }
+    public function failed(){
 
     }
 

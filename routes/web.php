@@ -91,7 +91,7 @@ Route::any('list',['uses'=>'ArticleController@index','as'=>'list']);
 //文章详情
 Route::any('show/{id}',['uses'=>'ArticleController@show','as'=>'show']);
 
-Route::any('chefs_event',['uses'=>'ArticleController@chefs','as'=>'chefs_event']);
+Route::any('event',['uses'=>'ArticleController@chefs','as'=>'chefs_event']);
 
 //百度地图
 Route::any('baidu_map',['uses'=>'BaiDuMapController@index']);

@@ -25,18 +25,20 @@ class ArticleController extends Controller
     public function show($id){
         //每次对访问刷新次数加一
         $content = LiZhi::find($id);
-        //一个小操作，就可以进行监听
-        Event::fire(new OrderShipped($content));
 
+        //一个小操作，就可以进行监听
+//        Event::fire(new OrderShipped($content));
+        event(new OrderShipped($content));
         echo $content->content;
         echo $content->click;
+
     }
     //chefs模型
     public function chefs(){
         $content = Chefs::first();
 
-        Event::fire(new QueueTest($content));
-
+        event(new QueueTest($content));
+        echo $content->id;
         echo $content->chef_name;
         echo $content->like_num;
     }
