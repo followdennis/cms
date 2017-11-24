@@ -182,6 +182,7 @@ return [
 
         App\Providers\RiakServiceProvider::class,
         Overtrue\LaravelUEditor\UEditorServiceProvider::class,//ueditor
+        Laravel\Tinker\TinkerServiceProvider::class
 
 
     ],
