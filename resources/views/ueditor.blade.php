@@ -85,8 +85,32 @@
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
     for( var i = 1; i<= '{{ $num }}'; i++){
-        var ue = UE.getEditor('container'+i);
-        initialFrameWidth : 900;//文本框宽和高
+        var ue = UE.getEditor('container'+i,{
+            //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
+            toolbars:[[
+                'fullscreen',  '|', 'undo', 'redo', '|',
+                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'cleardoc', '|',
+                 'lineheight', '|',
+                'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+                'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+                'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+                'simpleupload', 'insertimage', 'emotion',   'insertcode',  'template', 'background', '|',
+                'horizontal', 'date', 'time', 'spechars', 'snapscreen',  '|',
+                'inserttable', 'deletetable',  '|',
+                'preview', 'searchreplace'
+            ]],
+            //focus时自动清空初始化时的内容
+            autoClearinitialContent:true,
+            //关闭字数统计
+            wordCount:false,
+            //关闭elementPath
+            elementPathEnabled:false,
+            //默认的编辑区域高度
+            initialFrameHeight:300
+            //更多其他参数，请参考ueditor.config.js中的配置项
+
+        });
+        initialFrameWidth : '500px';//文本框宽和高
         initialFrameHeight : 350;//文本框宽和高
         autoHeight:false;
         ue.ready(function() {

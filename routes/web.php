@@ -303,3 +303,8 @@ Route::any('vue_data','VueController@index');
  * ueditor 百度编辑器
  */
 Route::any('ueditor','OneController@ueditor');
+
+//可输入的下拉框
+Route::any('select_input',function(){
+    return view('select_input');
+});
