@@ -91,7 +91,7 @@ Route::any('list',['uses'=>'ArticleController@index','as'=>'list']);
 //文章详情
 Route::any('show/{id}',['uses'=>'ArticleController@show','as'=>'show']);
 
-Route::any('chefs_event',['uses'=>'ArticleController@chefs','as'=>'chefs_event']);
+Route::any('event',['uses'=>'ArticleController@chefs','as'=>'chefs_event']);
 
 //百度地图
 Route::any('baidu_map',['uses'=>'BaiDuMapController@index']);
@@ -304,7 +304,16 @@ Route::any('vue_data','VueController@index');
  */
 Route::any('ueditor','OneController@ueditor');
 
+
 //可输入的下拉框
 Route::any('select_input',function(){
     return view('select_input');
 });
+
+/**
+ * elasticsearch  全文搜索
+ */
+Route::any('elasticsearch','ElasticSearchController@index');
+Route::any('get_document','ElasticSearchController@get_document');//get_document
+Route::any('search_for_doc','ElasticSearchController@search_for_doc');//search_for_doc
+

@@ -17,7 +17,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         //
         Commands\MultiThreadRequest::class,
-        Commands\MultiThreadText::class
+        Commands\MultiThreadText::class,
+        \Laravel\Tinker\Console\TinkerCommand::class,//tinker  直接操作数据库
     ];
 
     /**

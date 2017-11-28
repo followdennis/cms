@@ -11,7 +11,8 @@ class ManageQueueTest implements ShouldQueue
     /**
      * 任务将被推送到的连接名称
      */
-    public $connection = 'sqs';
+    public $connection = 'sync';
+//    public $connection = 'sqs';
 
     public $queue = 'listeners';
     /**
