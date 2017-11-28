@@ -303,3 +303,10 @@ Route::any('vue_data','VueController@index');
  * ueditor 百度编辑器
  */
 Route::any('ueditor','OneController@ueditor');
+
+/**
+ * elasticsearch  全文搜索
+ */
+Route::any('elasticsearch','ElasticSearchController@index');
+Route::any('get_document','ElasticSearchController@get_document');//get_document
+Route::any('search_for_doc','ElasticSearchController@search_for_doc');//search_for_doc
