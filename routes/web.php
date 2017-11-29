@@ -307,6 +307,52 @@ Route::any('ueditor','OneController@ueditor');
 /**
  * elasticsearch  全文搜索
  */
-Route::any('elasticsearch','ElasticSearchController@index');
+Route::any('make_index','ElasticSearchController@make_index'); //创建索引
+Route::any('elasticsearch','ElasticSearchController@index'); //插入索引数据
 Route::any('get_document','ElasticSearchController@get_document');//get_document
-Route::any('search_for_doc','ElasticSearchController@search_for_doc');//search_for_doc
+
+Route::any('search_for_doc','ElasticSearchController@search_for_doc');//搜索文档
+Route::any('del_doc','ElasticSearchController@del_doc');//删除文档
+Route::any('del_index','ElasticSearchController@del_index');//删除索引（删除整个索引，要比文档范围更大）
+
+
+/**
+ * xunsearch  应用测试
+ */
+Route::get('/xunsearch/{key}', function ($key){
+
+    $xs = new XS(config_path('search-demo.ini'));
+
+
+    $search = $xs->search; // 获取 搜索对象
+    $query = $key;
+
+    $search->setQuery($query)
+        ->setSort('chrono', true) //按照chrono 正序排列
+        ->setLimit(20,0) // 设置搜索语句, 分页, 偏移量
+    ;
+
+    $docs = $search->search(); // 执行搜索，将搜索结果文档保存在 $docs 数组中
+
+    $count = $search->count(); // 获取搜索结果的匹配总数估算值
+    foreach ($docs as $doc){
+        $subject = $search->highlight($doc->subject); // 高亮处理 subject 字段
+        $message = $search->highlight($doc->message); // 高亮处理 message 字段
+        echo $doc->rank() . '. ' . $subject . " [" . $doc->percent() . "%] - ";
+        echo date("Y-m-d", $doc->chrono) . "<br>" . $message . "<br>";
+        echo '<br>========<br>';
+    }
+    echo  '总数:'. $count;
+});
+
+Route::get('/makedoc/{title}/{message}', function ($title, $message){
+    $xs = new XS('demo');
+    $doc = new XSDocument;
+    $doc->setFields([
+        'pid' => 1,
+        'subject' => $title,
+        'message' => $message,
+        'chrono' => time(),
+    ]); // 用数组进行批量赋值
+    $xs->index->add($doc);
+});
