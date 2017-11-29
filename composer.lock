@@ -359,8 +359,6 @@
                 "validator"
             ],
             "time": "2017-11-15T23:40:40+00:00"
-<<<<<<< HEAD
-=======
         },
         {
             "name": "elasticsearch/elasticsearch",
@@ -416,7 +414,6 @@
                 "search"
             ],
             "time": "2017-11-08T17:04:47+00:00"
->>>>>>> bb90d9318a376e5cc1158c6b7314e94089575e56
         },
         {
             "name": "erusev/parsedown",
@@ -950,18 +947,6 @@
         },
         {
             "name": "laravel/framework",
-<<<<<<< HEAD
-            "version": "v5.5.21",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/framework.git",
-                "reference": "6321069a75723d88103526903d3192f0b231544a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://files.phpcomposer.com/files/laravel/framework/6321069a75723d88103526903d3192f0b231544a.zip",
-                "reference": "6321069a75723d88103526903d3192f0b231544a",
-=======
             "version": "v5.5.22",
             "source": {
                 "type": "git",
@@ -972,7 +957,6 @@
                 "type": "zip",
                 "url": "https://files.phpcomposer.com/files/laravel/framework/2404af887ca8272d721628a99bbc721ac3b692e7.zip",
                 "reference": "2404af887ca8272d721628a99bbc721ac3b692e7",
->>>>>>> bb90d9318a376e5cc1158c6b7314e94089575e56
                 "shasum": ""
             },
             "require": {
@@ -1092,11 +1076,7 @@
                 "framework",
                 "laravel"
             ],
-<<<<<<< HEAD
-            "time": "2017-11-14T15:08:13+00:00"
-=======
             "time": "2017-11-27T15:29:55+00:00"
->>>>>>> bb90d9318a376e5cc1158c6b7314e94089575e56
         },
         {
             "name": "laravel/passport",
@@ -4287,18 +4267,6 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-<<<<<<< HEAD
-            "version": "5.2.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "8e1d2397d8adf59a3f12b2878a3aaa66d1ab189d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://files.phpcomposer.com/files/sebastianbergmann/php-code-coverage/8e1d2397d8adf59a3f12b2878a3aaa66d1ab189d.zip",
-                "reference": "8e1d2397d8adf59a3f12b2878a3aaa66d1ab189d",
-=======
             "version": "5.2.4",
             "source": {
                 "type": "git",
@@ -4309,7 +4277,6 @@
                 "type": "zip",
                 "url": "https://files.phpcomposer.com/files/sebastianbergmann/php-code-coverage/033ec97498cf530cc1be4199264cad568b19be26.zip",
                 "reference": "033ec97498cf530cc1be4199264cad568b19be26",
->>>>>>> bb90d9318a376e5cc1158c6b7314e94089575e56
                 "shasum": ""
             },
             "require": {
@@ -4318,11 +4285,7 @@
                 "php": "^7.0",
                 "phpunit/php-file-iterator": "^1.4.2",
                 "phpunit/php-text-template": "^1.2.1",
-<<<<<<< HEAD
-                "phpunit/php-token-stream": "^2.0",
-=======
                 "phpunit/php-token-stream": "^2.0.1",
->>>>>>> bb90d9318a376e5cc1158c6b7314e94089575e56
                 "sebastian/code-unit-reverse-lookup": "^1.0.1",
                 "sebastian/environment": "^3.0",
                 "sebastian/version": "^2.0.1",
@@ -4364,11 +4327,7 @@
                 "testing",
                 "xunit"
             ],
-<<<<<<< HEAD
-            "time": "2017-11-03T13:47:33+00:00"
-=======
             "time": "2017-11-27T09:00:30+00:00"
->>>>>>> bb90d9318a376e5cc1158c6b7314e94089575e56
         },
         {
             "name": "phpunit/php-file-iterator",
