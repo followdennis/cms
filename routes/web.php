@@ -320,8 +320,10 @@ Route::any('del_index','ElasticSearchController@del_index');//删除索引（删
  * xunsearch  应用测试
  */
 Route::get('/xunsearch/{key}', function ($key){
+    //config_path('search-demo.ini')
+    $path = dirname(dirname(__FILE__)).'/config/search_demo.ini';
 
-    $xs = new XS(config_path('search-demo.ini'));
+    $xs = new XS($path);
 
 
     $search = $xs->search; // 获取 搜索对象
