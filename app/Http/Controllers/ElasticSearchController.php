@@ -2,40 +2,60 @@
 
 namespace App\Http\Controllers;
 
+use App\Dog;
 use Elasticsearch\Client;
 use Elasticsearch\ClientBuilder;
 use Illuminate\Http\Request;
 
 class ElasticSearchController extends Controller
 {
-    public function create_index(){
+    //创建索引
+    public function make_index(){
 
-        $client = new Client();
-        $index['index'] = 'log';  //索引名称
-        $index['type'] = 'ems_run_log'; //类型名称
+        $client = ClientBuilder::create()->build(); //客户端的调用用该用这个方法
+        $index['index'] = 'my_index';  //索引名称
+//        $index['type'] = 'ems_run_log'; //没有这个类型
         $data['body']['settings']['number_of_shards'] = 5;  //主分片数量
         $data['body']['settings']['number_of_replicas'] = 0; //从分片数量
         $client->indices()->create($index);
+        echo "创建完成";
     }
     //插入索引数据
-    public function index(){
+    public function index(Dog $dog){
         $client = ClientBuilder::create()->build();
-        $params = [
-            'index' => 'my_index',
-            'type' => 'my_type',
-            'id' => 'my_id',
-            'body' => ['testField' => 'abc'] //可以是多字段
-        ];
-        $response = $client->index($params);
-        echo "<pre>";
-        print_r($response);
+//        $params = [
+//            'index' => 'my_index',
+//            'type' => 'my_type',
+//            'id' => 'my_id',
+//            'body' => ['testField' => 'abc'] //可以是多字段
+//        ];
+//        $response = $client->index($params);
+        $params = array();
+//        $params['index'] = 'my_index';
+//        $client->indices()->delete($params);
+
+        $list = $dog->getList();
+        foreach($list as $k => $v){
+            $params = array();
+            $params['body'] = [
+                'dog_name'=>$v->dog_name,
+                'owner_name'=>$v->owner_name,
+                'owner_id' => $v->owner_id
+            ];
+            $params['index'] = 'my_index';
+            $params['type'] = 'my_type';
+            $params['id'] = $v->id;
+            $client->index($params);
+        }
+        echo "创建索引完成";
     }
+    //获取文档  测试成功
     public function get_document(){
         $client = ClientBuilder::create()->build();
         $params = [
             'index' => 'my_index',
             'type' => 'my_type',
-            'id' => 'my_id'
+            'id' => '3'
         ];
 
         $response = $client->get($params);
@@ -51,7 +71,7 @@ class ElasticSearchController extends Controller
      *                                      ['match'=>['mac'=>'abc']],
      *                                       ['match'=>['product_id'=>20]]
      *                              ];
-     * 3,或的查询条件      $index['body']['bool']['should'] = [['match'=>['mac'=>'abc']],['match'=>['product_id'=>20]]];
+     * 3,或的查询条件     $index['body']['query']['bool']['should'] = [['match'=>['mac'=>'abc']],['match'=>['product_id'=>20]]];
      * 4,非查询条件        只需修改 must_not 即可
      * 5,大于 等于 小于            $index['body']['query']['range'] = ['id' => ['gte' => 20,'lt'=>30]]
      */
@@ -61,14 +81,18 @@ class ElasticSearchController extends Controller
             'index' => 'my_index',
             'type' => 'my_type',
             'body' => [
-                'query' => [
-                    'match' => [
-                        'testField' => 'abc'
-                    ]
+                'query'=>[
+                    'bool'=>['should'=>[
+                        ['match'=>['dog_name'=>'dahuang']],
+                        ['match'=>['dog_name'=>'August']],
+                        ['match'=>['dog_name'=>'Shanel']],
+                        ['match'=>['dog_name'=>'tony']]
+
+                    ]]
                 ]
             ],
-            'size'=>10,   // 10条
-            'from'=>200   // 从第200条开始
+//            'size'=>10,   // 10条
+//            'from'=>200   // 从第200条开始
         ];
 
         $response = $client->search($params);
@@ -85,6 +109,7 @@ class ElasticSearchController extends Controller
         ];
 
         $response = $client->delete($params);
+        echo "<pre>";
         print_r($response);
     }
     //删除索引
@@ -96,25 +121,25 @@ class ElasticSearchController extends Controller
         $response = $client->indices()->delete($deleteParams);
         print_r($response);
     }
-    //创建索引
-    public function create_index(){
-        $client = ClientBuilder::create()->build();
-        $params = [
-            'index' => 'my_index',
-            'body' => [
-                'settings' => [
-                    'number_of_shards' => 2,
-                    'number_of_replicas' => 0
-                ]
-            ]
-        ];
 
-        $response = $client->indices()->create($params);
-        print_r($response);
-    }
     //批量添加索引
     public function mass_add(){
+        $client = new Client();
+        for($i = 0; $i < 100; $i++) {
+            $params['body'][] = array(
+                'index' => array(
+                    '_id' => $i
+                )
+            );
+
+            $params['body'][] = array(
+                'my_field' => 'my_value',
+                'second_field' => 'some more values'
+            );
+        }
+        $responses = $client->bulk($params);
 
     }
+
 
 }

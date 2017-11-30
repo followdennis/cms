@@ -13,4 +13,7 @@ class Dog extends Model
     public function owner(){
         return $this->belongsTo('App\Chefs','owner_id');
     }
+    public function getList(){
+        return self::get();
+    }
 }
