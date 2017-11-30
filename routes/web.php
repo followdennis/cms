@@ -338,10 +338,11 @@ Route::get('/xunsearch/{key}', function ($key){
 
     $count = $search->count(); // 获取搜索结果的匹配总数估算值
     foreach ($docs as $doc){
+        $id = $doc->pid;
         $subject = $search->highlight($doc->subject); // 高亮处理 subject 字段
         $message = $search->highlight($doc->message); // 高亮处理 message 字段
         echo $doc->rank() . '. ' . $subject . " [" . $doc->percent() . "%] - ";
-        echo date("Y-m-d", $doc->chrono) . "<br>" . $message . "<br>";
+        echo date("Y-m-d", $doc->chrono) . "<br><a href='javascript:;' title=".$id." data-id='".$id."' >去查看</a>" . $message . "<br>";
         echo '<br>========<br>';
     }
     echo  '总数:'. $count;
@@ -358,3 +359,5 @@ Route::get('/makedoc/{title}/{message}', function ($title, $message){
     ]); // 用数组进行批量赋值
     $xs->index->add($doc);
 });
+Route::get('clear_index','SearchController@clear_index');
+Route::get('create_index','SearchController@create_index');
