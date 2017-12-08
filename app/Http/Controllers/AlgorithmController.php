@@ -12,7 +12,23 @@ class AlgorithmController extends Controller
         [3,4,5],
         [7,8,9]
     ];
+    public function name_convert(){
+        $name = 'case_investigation_report';
+        echo $this->convertUnderline($name);
+    }
 
+    //蛇形的写法 转化成 驼峰式写法
+    public function convertUnderline ( $str , $ucfirst = true)
+    {
+        $str = explode('_' , $str);
+        foreach($str as $key=>$val)
+            $str[$key] = ucfirst($val);
+
+        if(!$ucfirst)
+            $str[0] = strtolower($str[0]);
+
+        return lcfirst(implode('' , $str));
+    }
     //切割数组
     public function div_arr(){
         $arr = [1,2,3,4,5,6,7,9,10,11,12,16,17,18,20,21];

@@ -19,6 +19,8 @@ Route::get('/view',function(){
    return view('home');
 });
 Route::any('test','TestController@test');
+Route::any('time_test','TestController@time_test');//时间解析器测试
+Route::any('test_validate','TestController@test_validate');//验证测试
 Route::any('/','TestController@test');
 Route::get('/home', 'HomeController@index');
 Route::get('/home2', 'HomeController@index2');
@@ -264,6 +266,7 @@ Route::group(['prefix'=>'ai'],function(){
 Route::group(['prefix'=>'calculate'],function(){
     Route::any('/',['uses'=>'AlgorithmController@index']);
     Route::any('/is_continuity','AlgorithmController@is_continuity');
+    Route::any('/name_convert','AlgorithmController@name_convert');
 });
 
 /**
