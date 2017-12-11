@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Dog;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
@@ -19,6 +20,17 @@ use Symfony\Component\DomCrawler\Crawler;
 class TestController extends Controller
 {
 
+    public function update_test(Dog $dog){
+        $owner_name = 'owner2';
+        //返回实例
+//        $dog = Dog::firstOrCreate(['dog_name'=>'Burley Herman IV','owner_id'=>5,'owner_name'=>$owner_name]);
+        //返回实例
+        $dog = Dog::updateOrCreate(['owner_name'=>'owner3'],['owner_id'=>1,'dog_name'=>'hobo']);
+        echo $dog->id;
+        echo "<br/>";
+        $data = $dog->getOne();
+        dd($data);
+    }
     public function time_test(){
         echo 'test<br/>';
         $str = "11/09/2017";

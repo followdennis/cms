@@ -33,6 +33,8 @@ Route::any('sidebar',function(){
  * 序列化测试
  */
 Route::any('test_serialize','TestController@test_serialize');
+Route::any('update_test','TestController@update_test');
+
 
 Route::any('menu',['uses'=>'AdminController@menu','as'=>'menu']);
 Route::any('maketable',['uses'=>'AdminController@maketable','as'=>'maketable']);
