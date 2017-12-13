@@ -21,6 +21,7 @@ class TestController extends Controller
 {
 
     public function update_test(Dog $dog){
+        return response()->json([1,2,3]);
         $owner_name = 'owner2';
         //返回实例
 //        $dog = Dog::firstOrCreate(['dog_name'=>'Burley Herman IV','owner_id'=>5,'owner_name'=>$owner_name]);
