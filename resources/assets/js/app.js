@@ -24,12 +24,16 @@ Vue.component('todo-item',{
 });
 Vue.component('user-form',require('./components/Form.vue'));
 import ElementUI from 'element-ui'    //引入element－ui
+
 import 'element-ui/lib/theme-default/index.css' //引入element－ui所需的css样式资源文件
 import VueRouter from 'vue-router'
+Vue.use(VueRouter);
+
 import VueResource from 'vue-resource'
 
 import axios from 'axios';
 
+import store from './store/';//vuex 存储数据所需对象
 
 const Foo = {template:'<div>foo</div>'};
 const Bar = {template:'<div>bar</div>'};
@@ -38,6 +42,7 @@ const routes = [
     {path:'/foo',component:Foo},
     {path:'/bar',component:Bar}
 ];
+//实例化路由
 const router = new VueRouter({
     routes
 });
@@ -45,15 +50,21 @@ const router = new VueRouter({
 
 Vue.use(VueResource);
 Vue.use(ElementUI);    //把引入的ElementUI装入我们的Vue
-Vue.use(VueRouter);
+
+//实例化 Vue
 const app = new Vue({
-    el: '#app',
-    router,
-    data:{
-        groceryList:[
-            {id:0,text:'蔬菜'},
-            {id:1,text:'大西瓜'},
-            {id:3,text:'奶酪'}
-        ]
-    }
-});
+   store,
+    router
+}).$mount('#app');
+
+// const app = new Vue({
+//     el: '#app',
+//     router,
+//     data:{
+//         groceryList:[
+//             {id:0,text:'蔬菜'},
+//             {id:1,text:'大西瓜'},
+//             {id:3,text:'奶酪'}
+//         ]
+//     }
+// });

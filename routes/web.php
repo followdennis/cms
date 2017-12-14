@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     //这里面有jquery生成二维码的插件
-    return view('welcome');
+    return view('test');
 });
 Route::get('/view',function(){
    return view('home');
@@ -287,6 +287,37 @@ Route::any('vue',function(){
 Route::any('vue_form',function(){
     return view('vue.index');
 });
+//vuex vuerouter aoisx测试
+
+Route::get('/news', function() {
+    return [
+        ['id' => 1, 'title' => 'new1'],
+        ['id' => 2, 'title' => 'new2'],
+        ['id' => 3, 'title' => 'new3'],
+        ['id' => 4, 'title' => 'new4'],
+    ];
+});
+Route::get('/newslist', function() {
+    return [
+        ['id' => 1, 'title' => 'new1'],
+        ['id' => 2, 'title' => 'new2'],
+        ['id' => 3, 'title' => 'new3'],
+        ['id' => 4, 'title' => 'new4'],
+    ];
+});
+Route::get('/newsdetail/{id}', function($id) {
+    return [
+        'id' => 1,
+        'title' => 'news',
+        'content' => 'content',
+        'created_at' => date('Y-m-d H:i:s')
+    ];
+});
+
+
+
+
+
 
 /**
  * 搜索功能算法

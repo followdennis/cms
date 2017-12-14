@@ -69,6 +69,8 @@
     <script>
 
     </script>
+    <script src="{{ mix('js/vueapp.js') }}"></script>
+
 </head>
 <body>
 <div class="flex-center position-ref full-height">
@@ -83,6 +85,7 @@
                 {{ $str }}
             </div>
         </div>
+        <example></example>
         <div class="links">
             <a href="https://laravel.com/docs">Documentation</a>
             <a href="https://laracasts.com">Laracasts</a>

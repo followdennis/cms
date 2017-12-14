@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
-
+    <meta name="X-CSRF-TOKEN" content="{{csrf_token()}}">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
@@ -134,7 +134,10 @@
         <div class="links">
             <a href="https://laravel.com/docs">Documentation</a>
         </div>
+        <example></example>
     </div>
+
+    <script src="{{ mix('js/vueapp.js') }}"></script>
 </div>
 </body>
 </html>

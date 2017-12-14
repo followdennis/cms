@@ -65,6 +65,7 @@ EOF;
     </script>
     <div class="container-fluid">
         <div class="row">
+
             <div class="col-sm-2">
                 <a href="#" class="list-group-item active">商品管理</a>
                 <a href="#" class="list-group-item"><i class="fa fa-edit"></i> 一级分类</a>
