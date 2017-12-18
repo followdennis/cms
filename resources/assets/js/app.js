@@ -33,7 +33,7 @@ import VueResource from 'vue-resource'
 
 import axios from 'axios';
 
-import store from './store/';//vuex 存储数据所需对象
+import store from './store/index.js';//vuex 存储数据所需对象
 
 const Foo = {template:'<div>foo</div>'};
 const Bar = {template:'<div>bar</div>'};
