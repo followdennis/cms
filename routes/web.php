@@ -11,14 +11,16 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     //这里面有jquery生成二维码的插件
-    return view('welcome');
+    return view('test');
 });
 Route::get('/view',function(){
    return view('home');
 });
 Route::any('test','TestController@test');
+Route::any('time_test','TestController@time_test');//时间解析器测试
+Route::any('test_validate','TestController@test_validate');//验证测试
 Route::any('/','TestController@test');
 Route::get('/home', 'HomeController@index');
 Route::get('/home2', 'HomeController@index2');
@@ -31,6 +33,8 @@ Route::any('sidebar',function(){
  * 序列化测试
  */
 Route::any('test_serialize','TestController@test_serialize');
+Route::any('update_test','TestController@update_test');
+
 
 Route::any('menu',['uses'=>'AdminController@menu','as'=>'menu']);
 Route::any('maketable',['uses'=>'AdminController@maketable','as'=>'maketable']);
@@ -264,6 +268,7 @@ Route::group(['prefix'=>'ai'],function(){
 Route::group(['prefix'=>'calculate'],function(){
     Route::any('/',['uses'=>'AlgorithmController@index']);
     Route::any('/is_continuity','AlgorithmController@is_continuity');
+    Route::any('/name_convert','AlgorithmController@name_convert');
 });
 
 /**
@@ -282,6 +287,37 @@ Route::any('vue',function(){
 Route::any('vue_form',function(){
     return view('vue.index');
 });
+//vuex vuerouter aoisx测试
+
+Route::get('/news', function() {
+    return [
+        ['id' => 1, 'title' => 'new1'],
+        ['id' => 2, 'title' => 'new2'],
+        ['id' => 3, 'title' => 'new3'],
+        ['id' => 4, 'title' => 'new4'],
+    ];
+});
+Route::get('/newslist', function() {
+    return [
+        ['id' => 1, 'title' => 'new1'],
+        ['id' => 2, 'title' => 'new2'],
+        ['id' => 3, 'title' => 'new3'],
+        ['id' => 4, 'title' => 'new4'],
+    ];
+});
+Route::get('/newsdetail/{id}', function($id) {
+    return [
+        'id' => 1,
+        'title' => 'news',
+        'content' => 'content',
+        'created_at' => date('Y-m-d H:i:s')
+    ];
+});
+
+
+
+
+
 
 /**
  * 搜索功能算法

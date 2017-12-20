@@ -17,4 +17,9 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
+Route::group(['namespace'=>'Api','middleware'=>'api'],function(){
+    Route::get('auto_complete',['uses'=>'IndexController@index']);
+    Route::get('get_list',['uses'=>'IndexController@lists']);
+});
+
 

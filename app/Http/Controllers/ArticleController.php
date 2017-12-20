@@ -14,11 +14,11 @@ class ArticleController extends Controller
     //
     public function index(LiZhi $lizhi){
         $list = $lizhi->getList();
-        dd($list);
+
         echo 'aaa';
         $pattern = '~\bA\b~';
         $str="(A+AB+ABC+(B+BC))*A/B";
-        $out = preg_replace($pattern,$str);
+        $out = preg_replace($pattern,$str,'aaaabbc');
         print_r($out);
 
     }
