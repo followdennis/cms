@@ -51,6 +51,7 @@ const router = new VueRouter({
     routes
 });
 
+
 // Vue.use(VueResource);
 Vue.use(ElementUI);    //把引入的ElementUI装入我们的Vue
 
