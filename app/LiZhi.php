@@ -9,7 +9,7 @@ class LiZhi extends Model
 {
     //
     protected $table = 'lizhi';
-    protected $fillable = [];
+    protected $guarded = [];
     public function getList(){
         return DB::table($this->table)
             ->get();

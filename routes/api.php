@@ -19,7 +19,10 @@ Route::get('/user', function (Request $request) {
 
 Route::group(['namespace'=>'Api','middleware'=>'api'],function(){
     Route::get('auto_complete',['uses'=>'IndexController@index']);
-    Route::get('get_list',['uses'=>'IndexController@lists']);
+    Route::any('get_list',['uses'=>'IndexController@lists']);
+    Route::post('get_list/del',['uses'=>'IndexController@del']);
+    Route::post('get_list/edit',['uses'=>'IndexController@edit']);
+    Route::post('get_list/add',['uses'=>'IndexController@add']);
 });
 
 

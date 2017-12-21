@@ -12,45 +12,72 @@
                 <!--</li>-->
             <!--</li>-->
         <!--</ul>-->
-        <!--<el-table-->
-                <!--:data="tableData"-->
-                <!--border-->
-                <!--style="width: 100%"-->
-                <!--v-loading="loading"-->
-                <!--element-loading-text="加载中..."-->
-                <!--element-loading-spinner="el-icon-loading"-->
-                <!--element-loading-background="rgba(0, 0, 0, 0.8)">-->
-            <!--<el-table-column-->
-                    <!--prop="name"-->
-                    <!--label="名称"-->
-                    <!--width="180">-->
-            <!--</el-table-column>-->
-            <!--<el-table-column-->
-                    <!--prop="title"-->
-                    <!--label="标题"-->
-                    <!--width="180">-->
-            <!--</el-table-column>-->
-            <!--<el-table-column-->
-                    <!--prop="content"-->
-                    <!--label="正文">-->
-                <!--<template slot-scope="scope">-->
-                    <!--<div v-html="scope.row.content"></div>-->
-                <!--</template>-->
-            <!--</el-table-column>-->
-        <!--</el-table>-->
-        <!--<div class="block">-->
-            <!--<span class="demonstration">大于 7 页时的效果</span>-->
-            <!--<el-pagination-->
-                    <!--@size-change="handleSizeChange"-->
-                    <!--@current-change="handleCurrentChange"-->
-                    <!--:current-page="page.currentPage"-->
-                    <!--:page-sizes="[10, 20, 50, 100]"-->
-                    <!--:page-size="10"-->
-                    <!--layout="total, sizes, prev, pager, next, jumper"-->
-                    <!--:total="page.total">-->
-            <!--</el-pagination>-->
+        <div id="top">
+            <span style="float:right;">
+                <el-button type="text" @click="add" style="color:blue">添加</el-button>
+                <el-button type="text" @click="deletenames" style="color:red">批量删除</el-button>
+            </span>
+        </div>
+        <el-input placeholder="请输入内容" v-model="criteria" style="padding-bottom:10px;">
+            <el-select v-model="select" slot="prepend" placeholder="请选择">
+                <el-option label="id" value="1"></el-option>
+                <el-option label="name" value="2"></el-option>
+            </el-select>
+            <el-button slot="append" icon="search" v-on:click="search"></el-button>
+        </el-input>
+        <el-table
+                :data="tableData"
+                border
+                style="width: 100%"
+                v-loading="loading"
+                element-loading-text="加载中..."
+                element-loading-spinner="el-icon-loading"
+                element-loading-background="rgba(0, 0, 0, 0.8)">
+            <el-table-column type="selection" width="55">
+            </el-table-column>
+            <el-table-column
+                    prop="name"
+                    label="名称"
+                    width="180">
+            </el-table-column>
+            <el-table-column
+                    prop="title"
+                    label="标题"
+                    width="180">
+            </el-table-column>
+            <el-table-column
+                    prop="content"
+                    label="正文">
+                <template slot-scope="scope">
+                    <div v-html="scope.row.content"></div>
+                </template>
+            </el-table-column>
+            <el-table-column
+                    label="操作">
+                <template slot-scope="scope">
+                    <el-button
+                            size="small"
+                            type="primary"
+                            @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                    <el-button
+                            size="small"
+                            type="danger"
+                            @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+        <div class="block">
+            <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page="page.currentPage"
+                    :page-sizes="[10, 20, 50, 100]"
+                    :page-size="page.perPage"
+                    layout="total, sizes, prev, pager, next, jumper"
+                    :total="page.total">
+            </el-pagination>
 
-        <!--</div>-->
+        </div>
         <paginate
                 v-bind:row-click="rowClick"
                 :sort-change="sortChange"
@@ -59,6 +86,7 @@
                 :total-count="page.total"
                 :page-size="page.perPage"
                 :is-loading="loading"
+                :checkBox="true"
                 @currentPageChange="handleCurrentChange"></paginate>
     </div>
 </template>
@@ -69,6 +97,7 @@
 </style>
 <script>
     import Paginate from '../components/pagination/paginate.vue'
+    import qs from 'qs'
 export default({
     // 映射 vuex 上面的属性
     data(){
@@ -88,14 +117,14 @@ export default({
                 label:'姓名',
                 key:'123',
                 width:'auto',
-                sortable:true,
+                sortable:true
             },{
                 fixed:false,
                 value:'title',
                 label:'标题',
                 key:'456',
                 width:'auto',
-                sortable:true,
+                sortable:true
             },{
                 fixed:false,
                 value:'abc',
@@ -104,8 +133,13 @@ export default({
                 width:'auto',
                 sortable:true
             }],
-            loading:true
+            loading:true,
+            //搜索条件
+            criteria:'',
+            //下拉菜单
+            select:''
         }
+
 
     },
     computed: {
@@ -118,7 +152,8 @@ export default({
     },
     created(){
         console.log('component created');
-        this.getArticle();
+//        this.getArticle();
+        this.loadData('',1,10);
     },
     methods: {
         init:function(val,data){
@@ -131,57 +166,78 @@ export default({
         sortChange:function(){
 
         },
-        getArticle:function(){
-                this.loading = true;
-                axios.get('/api/get_list').then((response) =>{
-
-                    var return_data = response.data;
-                    this.tableData = return_data.items;
-                    this.page.total = return_data.total;
-                    this.page.perPage = return_data.perPage;
-                    this.page.currentPage = return_data.currentPage;
-                    this.page.lastPage = return_data.lastPage;
-                    this.page.from = return_data.from;
-                    this.page.to = return_data.to;
-                    this.loading = false;
-                    console.log(return_data);
-                 }).catch(function(error){
-                    console.log(error);
-                });
-        },
-        handleSizeChange(val) {
-            console.log(`每页 ${val} 条`);
+        loadData:function(criteria,pageNum,pageSize){
+            let params = {
+                page:pageNum,
+                perPage:pageSize,
+                query:criteria
+            }
             this.loading = true;
-            axios('api/get_list?page='+this.page.currentPage+'&perPage='+val).then((response)=>{
-                var data = response.data;
-            this.tableData = data.items;
-            this.page.total = data.total;
-            this.page.perPage = val;
-            this.page.currentPage = data.currentPage;
-            this.page.lastPage = data.lastPage;
-            this.page.from = data.from;
-            this.page.to = data.to;
-            this.loading = false;
-        }).catch(function(error){
-                console.log(error);
-            });
-        },
-        handleCurrentChange(val) {
-            console.log(`当前页: ${val} ${this.page.perPage}`);
-            this.loading = true;
-            axios('api/get_list?page='+val+'&pageSize='+this.page.perPage).then((response)=>{
+            axios.get('/api/get_list',{params:params}).then((response)=>{
                 var data = response.data;
                 this.tableData = data.items;
                 this.page.total = data.total;
-                this.page.perPage = data.perPage;
-                this.page.currentPage = data.currentPage;
-                this.page.lastPage = data.lastPage;
-                this.page.from = data.from;
-                this.page.to = data.to;
+             }).catch(function(error){
+                console.log(error);
+            });
             this.loading = false;
+        },
+        handleSizeChange(val) {
+            console.log(`每页 ${val} 条`);
+            this.page.perPage = val;
+            this.loadData(this.criteria,this.page.currentPage,this.page.perPage);
+        },
+        handleCurrentChange(val) {
+            console.log(`当前页: ${val} ${this.page.perPage}`);
+            this.page.currentPage = val;
+            this.loadData(this.criteria,this.page.currentPage,this.page.perPage);
+        },
+        add:function(){
+            alert('add');
+        },
+        deletenames:function(){
+            alert('delete');
+        },
+        search:function(){
+            this.loadData(this.criteria, this.currentPage, this.pagesize);
+        },
+        handleEdit:function(){
+            this.$prompt('请输入新名称','提示',{
+                confirmButtonTest:'确定',
+                cancelButtonText:'取消',
+            }).then(( value ) =>{
+                if( value == '' || value == null){
+                    return ''
+                }
+                alert('edit');
+                axios.post('/api/get_list/edit',{'id':row.id,'name':row.name}).then(function(res){
+                    if(res.data.status == 1){
+
+                    }else{
+
+                    }
+                }).catch(()=>{
+                    console.log('failed');
+                })
+
+            });
+        },
+        handleDelete:function(index,row){
+            var array = [];
+            array.push(row.id);
+
+            axios.post('/api/get_list/del',{array:array}).then((response) =>{
+                var res = response.data;
+                if(res.status == 1){
+                    alert(res.msg);
+                }else{
+                    alert(res.msg);
+                }
+                this.loadData(this.criteria,this.page.currentPage,this.page.perPage);
             }).catch(function(error){
                 console.log(error);
             });
+
         }
 
     }

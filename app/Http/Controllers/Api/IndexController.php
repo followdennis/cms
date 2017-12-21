@@ -23,8 +23,8 @@ class IndexController extends Controller
     public function lists(Request $request){
         $perPage = !empty($request->get('perPage')) ? intval($request->get('perPage')) :10;
         $data = LiZhi::where(function($query) use($request){
-            if($request->filled('name')){
-                $kw = $request->get('name');
+            if($request->filled('query')){
+                $kw = $request->get('query');
                 $query->where('name','like','%'.$kw.'%');
             }
         })->paginate($perPage);
@@ -50,5 +50,20 @@ class IndexController extends Controller
             $result['items'] = $items;
         }
         return response()->json($result);
+    }
+    public function del(Request $request){
+        $id = $request->get('array');
+        $del_status = Lizhi::destroy($id);
+        if($del_status){
+            return response()->json(['code'=>1,'msg'=>'删除成功']);
+        }else{
+            return response()->json(['code'=>0,'msg'=>'删除失败']);
+        }
+    }
+    public function edit(){
+
+    }
+    public function add(){
+
     }
 }
