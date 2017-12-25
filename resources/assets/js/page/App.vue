@@ -139,8 +139,6 @@ export default({
             //下拉菜单
             select:''
         }
-
-
     },
     computed: {
         test:function(){
@@ -153,6 +151,7 @@ export default({
     created(){
         console.log('component created');
 //        this.getArticle();
+
         this.loadData('',1,10);
     },
     methods: {
@@ -177,10 +176,12 @@ export default({
                 var data = response.data;
                 this.tableData = data.items;
                 this.page.total = data.total;
+                this.loading = false;
+
              }).catch(function(error){
                 console.log(error);
             });
-            this.loading = false;
+
         },
         handleSizeChange(val) {
             console.log(`每页 ${val} 条`);
