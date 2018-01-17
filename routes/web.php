@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::any('request',function(\Illuminate\Http\Request $request){
+    dd($request->getContent('aaa'));
+});
 
 Route::get('/welcome', function () {
     //这里面有jquery生成二维码的插件
