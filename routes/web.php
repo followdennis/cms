@@ -10,8 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::any('request',function(\Illuminate\Http\Request $request){
-    dd($request->getContent('aaa'));
+/**
+ * social login 社会化登录api
+ */
+Route::group(['prefix'=>'social'],function($router){
+    require base_path('routes/social_login.php');
 });
 
 Route::get('/welcome', function () {
