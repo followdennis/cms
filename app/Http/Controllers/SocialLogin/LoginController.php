@@ -15,5 +15,6 @@ class LoginController extends Controller
     public function qqlogin(){
         $user = Socialite::driver('qq')->user();
         dd($user);
+
     }
 }

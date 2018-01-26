@@ -241,7 +241,7 @@ Route::get('api_user',function(\Illuminate\Http\Request $request){
 /**
  * 相关性测试
  */
-Route::any('recommend',['uses'=>'RecommentController@index','as'=>'recomment']);
+Route::any('recommend',['uses'=>'RecommentController@index','as'=>'recommend']);
 
 /**
  * category分类测试
