@@ -6,12 +6,31 @@ use Illuminate\Http\Request;
 
 class AlgorithmController extends Controller
 {
+
     //算法测试
     public $arr = [
         [1,2],
         [3,4,5],
         [7,8,9]
     ];
+    //斐波那契额数列测速
+    public function print_fibonacci(){
+
+        $time = microtime(true);
+        $n = 10;
+        echo "n=".$n."<br/>";
+        echo $this->fibonacci($n);
+        echo "<br/>";
+        $end = microtime(true);
+        echo $end-$time;
+    }
+
+    public function fibonacci($n){
+        if($n < 2){
+            return $n;
+        }
+        return $this->fibonacci($n -1) + $this->fibonacci($n-1);
+    }
     public function name_convert(){
         $name = 'case_investigation_report';
         echo $this->convertUnderline($name);

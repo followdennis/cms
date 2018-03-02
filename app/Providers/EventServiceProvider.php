@@ -23,7 +23,7 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\ManageQueueTest',
         ],
         'SocialiteProviders\Manager\SocialiteWasCalled'=>[
-            'SocialiteProviders\Qq\QqExtendSocialite@handle',
+            'SocialiteProviders\QQ\QqExtendSocialite@handle',
             'SocialiteProviders\Weibo\WeiboExtendSocialite@handle'
         ],
 

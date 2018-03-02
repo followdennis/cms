@@ -184,7 +184,7 @@ return [
         Overtrue\LaravelUEditor\UEditorServiceProvider::class,//ueditor
         Laravel\Tinker\TinkerServiceProvider::class,
 
-        SocialiteProviders\Manager\ServiceProvider::class,//社会化登录
+        \SocialiteProviders\Manager\ServiceProvider::class,//社会化登录
 
 
     ],

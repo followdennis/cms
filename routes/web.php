@@ -17,6 +17,8 @@ Route::group(['prefix'=>'social'],function($router){
     require base_path('routes/social_login.php');
 });
 
+Route::get('print_fibonacci','AlgorithmController@print_fibonacci');
+
 Route::get('/welcome', function () {
     //这里面有jquery生成二维码的插件
     return view('test');
