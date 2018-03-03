@@ -23,7 +23,7 @@
                 <el-option label="id" value="1"></el-option>
                 <el-option label="name" value="2"></el-option>
             </el-select>
-            <el-button slot="append" icon="search" v-on:click="search"></el-button>
+            <el-button slot="append" icon="search" v-on:click="search" ></el-button>
         </el-input>
         <el-table
                 :data="tableData"
@@ -71,7 +71,7 @@
                     @size-change="handleSizeChange"
                     @current-change="handleCurrentChange"
                     :current-page="page.currentPage"
-                    :page-sizes="[10, 20, 50, 100]"
+                    :page-sizes="[2,10, 20, 50, 100]"
                     :page-size="page.perPage"
                     layout="total, sizes, prev, pager, next, jumper"
                     :total="page.total">
@@ -133,7 +133,7 @@ export default({
                 width:'auto',
                 sortable:true
             }],
-            loading:true,
+            loading:false,
             //搜索条件
             criteria:'',
             //下拉菜单
@@ -177,10 +177,11 @@ export default({
                 var data = response.data;
                 this.tableData = data.items;
                 this.page.total = data.total;
+                this.loading = false;
              }).catch(function(error){
                 console.log(error);
             });
-            this.loading = false;
+
         },
         handleSizeChange(val) {
             console.log(`每页 ${val} 条`);
