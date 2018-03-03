@@ -139,8 +139,6 @@ export default({
             //下拉菜单
             select:''
         }
-
-
     },
     computed: {
         test:function(){
@@ -153,6 +151,7 @@ export default({
     created(){
         console.log('component created');
 //        this.getArticle();
+
         this.loadData('',1,10);
     },
     methods: {

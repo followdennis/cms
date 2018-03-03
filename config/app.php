@@ -182,7 +182,9 @@ return [
 
         App\Providers\RiakServiceProvider::class,
         Overtrue\LaravelUEditor\UEditorServiceProvider::class,//ueditor
-        Laravel\Tinker\TinkerServiceProvider::class
+        Laravel\Tinker\TinkerServiceProvider::class,
+
+        \SocialiteProviders\Manager\ServiceProvider::class,//社会化登录
 
 
     ],
@@ -233,6 +235,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Socialite'=>Laravel\Socialite\Facades\Socialite::class
 
     ],
 

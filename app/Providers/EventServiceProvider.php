@@ -22,6 +22,11 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\QueueTest' => [
             'App\Listeners\ManageQueueTest',
         ],
+        'SocialiteProviders\Manager\SocialiteWasCalled'=>[
+            'SocialiteProviders\QQ\QqExtendSocialite@handle',
+            'SocialiteProviders\Weibo\WeiboExtendSocialite@handle'
+        ],
+
     ];
     //将订阅者注册进来
 //    protected $subscribe = [
