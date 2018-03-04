@@ -415,4 +415,14 @@ Route::get('/makedoc/{title}/{message}', function ($title, $message){
 });
 Route::get('clear_index','SearchController@clear_index');
 Route::get('create_index','SearchController@create_index');
+// 8大排序
+
+Route::get('sort1',['uses'=>'EightSortController@InsertSort']);//简单
+Route::get('sort2',['uses'=>'EightSortController@ShellSort']);//希尔
+Route::get('sort3',['uses'=>'EightSortController@SelectSort']);//选择
+Route::get('sort4',['uses'=>'EightSortController@BubbleSort']);//冒泡
+Route::get('sort5',['uses'=>'EightSortController@QuickSort']);//快速
+Route::get('sort6',['uses'=>'EightSortController@MergeSort']);//归并
+Route::get('sort7',['uses'=>'EightSortController@InsertSort']);
+Route::get('sort8',['uses'=>'EightSortController@InsertSort']);
 
