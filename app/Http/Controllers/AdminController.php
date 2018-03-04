@@ -320,7 +320,6 @@ class AdminController extends Controller
             }else{
                 echo 'fail2';
             }
-
     }
     public function cache_get(){
         if(Cache::store('redis')->has('cache_name')){

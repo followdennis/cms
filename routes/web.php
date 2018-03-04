@@ -426,3 +426,11 @@ Route::get('sort6',['uses'=>'EightSortController@MergeSort']);//归并
 Route::get('sort7',['uses'=>'EightSortController@InsertSort']);
 Route::get('sort8',['uses'=>'EightSortController@InsertSort']);
 
+//sql语句测试
+Route::get('sql',['uses'=>'CommonSqlController@sqlTest']);
+Route::get('complex_sql',['uses'=>'CommonSqlController@complex_sql']);
+Route::get('complex_sql2',['uses'=>'CommonSqlController@complex_sql2']);
+Route::get('complex_sql3',['uses'=>'CommonSqlController@complex_sql3']);
+Route::get('complex_sql4',['uses'=>'CommonSqlController@complex_sql4']);
+Route::get('complex_sql5',['uses'=>'CommonSqlController@complex_sql5']);
+
