@@ -318,7 +318,7 @@ class AdminController extends Controller
             if(Cache::store('redis')->put('cache_name','wang',1)){
                 echo 'okk';
             }else{
-                echo 'fail';
+                echo 'fail2';
             }
 
     }
