@@ -316,7 +316,7 @@ class AdminController extends Controller
     //redis缓存
     public function cache_set(){
             if(Cache::store('redis')->put('cache_name','wang',1)){
-                echo 'ok';
+                echo 'okk';
             }else{
                 echo 'fail';
             }
