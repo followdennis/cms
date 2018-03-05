@@ -66,6 +66,34 @@ where parent = ?';
         $sql = 'select * from tb_name where to_days(created_at) = to_days(now())';//请求当天的数据
         $sql ='select * from tb_name where DATE_FORMAT(created_at,"%Y%m") = DATE_FORMAT(CURDATE,"%Y%m") ';//请求当前月份
         $sql = 'select * from tb_name where YEAR(create_at)=YEAR(now())';
+        $sql = 'select parent_id,count(*) as cnt from c_category group by parent_id having cnt>1';//having 方式的使用
+        //这种是自己调用自己 in 的用法
+        $sql = 'select * from c_category where parent_id in (select parent_id as cnt from c_category group by parent_id having count(*)>2)';
+
+        $res = \DB::select($sql);
+        echo "<pre>";
+        print_r($this->object2arr($res));
 
     }
+    public function complex_sql4(){
+        //删除字段的重复记录，保留主键的最小值 就是两个条件 在某个范围内，然后不在某个范围内
+        $sql = 'delete from tb where people_id in (select people_id from tb group by people_id having  count(*) > 0) and id not in
+        (select min(id) from tb group by people_id having count(*) > 0)';
+    }
+
+    //对象转换成数组
+    public function object2arr($obj){
+        $return = [];
+        foreach($obj as $k => $v){
+            if(is_object($v)){
+                foreach($v as $kk => $vv){
+                  $return[$k][$kk] = $vv;
+                }
+            }else{
+                $return[$k] = $v;
+            }
+        }
+        return $return;
+    }
+
 }
