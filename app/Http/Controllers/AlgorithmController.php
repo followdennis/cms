@@ -127,4 +127,42 @@ class AlgorithmController extends Controller
         return $result;
     }
 
+    //对数组类型的数据进行排序
+    public function get_sort_data(){
+        $data = [];
+        for($i = 0; $i < 50; $i++){
+            array_push($data,[
+                'name'=>$i."--".str_random(10),
+                'chinese'=>rand(70,100),
+                'math'=>rand(70,100),
+                'english'=>rand(70,100)
+            ]);
+        }
+        echo "<pre>";
+        print_r($data);
+        echo "<hr/>";
+        $new_data = [];
+        $i = 0;
+        foreach($data as $k => $v){
+            if($v['chinese'] > 80 && $v['math'] > 80 && $v['english'] > 80 ){
+                $v['sum'] = $v['chinese'] + $v['math'] + $v['english'];
+                array_push($new_data,$v);
+                ++$i;
+                if($i == 10){
+                    break;
+                }
+            }
+        }
+        usort($new_data,function($a,$b){
+            if($a['sum'] == $b['sum']){
+                return 0;
+            }else if($a['sum'] > $b['sum']){
+                return -1;
+            }else{
+                return +1;
+            }
+        });
+        print_r($new_data);
+    }
+
 }

@@ -277,6 +277,7 @@ Route::group(['prefix'=>'calculate'],function(){
     Route::any('/',['uses'=>'AlgorithmController@index']);
     Route::any('/is_continuity','AlgorithmController@is_continuity');
     Route::any('/name_convert','AlgorithmController@name_convert');
+    Route::any('/get_sort_data','AlgorithmController@get_sort_data');//算法，计算学生的成绩排名
 });
 
 /**
@@ -433,4 +434,13 @@ Route::get('complex_sql2',['uses'=>'CommonSqlController@complex_sql2']);
 Route::get('complex_sql3',['uses'=>'CommonSqlController@complex_sql3']);
 Route::get('complex_sql4',['uses'=>'CommonSqlController@complex_sql4']);
 Route::get('complex_sql5',['uses'=>'CommonSqlController@complex_sql5']);
+
+//常用php 函数
+Route::get('php_function',['uses'=>'PHPCommonFunctionController@php_function']);
+Route::get('php_function2',['uses'=>'PHPCommonFunctionController@php_function2']);
+Route::get('php_function3',['uses'=>'PHPCommonFunctionController@php_function3']);
+Route::get('php_function4',['uses'=>'PHPCommonFunctionController@php_function4']);
+Route::get('php_function5',['uses'=>'PHPCommonFunctionController@php_function5']);
+Route::get('php_function6',['uses'=>'PHPCommonFunctionController@php_function6']);
+
 
