@@ -69,7 +69,8 @@ where parent = ?';
         $sql = 'select parent_id,count(*) as cnt from c_category group by parent_id having cnt>1';//having 方式的使用
         //这种是自己调用自己 in 的用法
         $sql = 'select * from c_category where parent_id in (select parent_id as cnt from c_category group by parent_id having count(*)>2)';
-
+        //exists 的写法
+        $sql = 'select * from c_category a where exists(select parent_id from c_category b group by parent_id having count(*)>1 and  a.parent_id=b.parent_id )';
         $res = \DB::select($sql);
         echo "<pre>";
         print_r($this->object2arr($res));
@@ -79,6 +80,27 @@ where parent = ?';
         //删除字段的重复记录，保留主键的最小值 就是两个条件 在某个范围内，然后不在某个范围内
         $sql = 'delete from tb where people_id in (select people_id from tb group by people_id having  count(*) > 0) and id not in
         (select min(id) from tb group by people_id having count(*) > 0)';
+    }
+
+    public function complex_sql5(){
+        //数据表的基本操作
+        //增加字段
+        $sql = 'alter table tb add column new1 varchar(12) default null';
+        //删除字段
+        $sql = 'alter table  tb drop column new2';
+        //修改字段
+        $sql = 'alter table tb modify new1 varchar(10)';
+        //修改表明
+        $sql = 'alter table tb rename tb2';
+        //添加索引
+        $sql = 'alter table tb add index emp_index(user_id)';
+        //添加主关键字索引
+        $sql = 'alter table tb add primary key(id)';
+        //添加唯一索引
+        $sql = 'alter table tb add unique user_name_index(user_name)';
+        //删除某个索引
+        $sql = 'alter table tb drop index emp_index';
+
     }
 
     //对象转换成数组
