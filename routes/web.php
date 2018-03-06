@@ -280,6 +280,7 @@ Route::group(['prefix'=>'calculate'],function(){
     Route::any('/get_sort_data','AlgorithmController@get_sort_data');//算法，计算学生的成绩排名
     Route::any('/get_sort_data2','AlgorithmController@get_sort_data2');//算法，计算学生的成绩排名
     Route::any('/get_tree','AlgorithmController@get_tree');//算法，计算学生的成绩排名
+    Route::any('/regular_test','AlgorithmController@regular_test');//正则表达式
 });
 
 /**

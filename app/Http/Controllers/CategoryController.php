@@ -37,5 +37,6 @@ class CategoryController extends Controller
         preg_match('/.*?(?={)/',$str,$out);
 
         print_r($out);
+
     }
 }

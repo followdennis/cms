@@ -226,5 +226,35 @@ class AlgorithmController extends Controller
         return $tree;
     }
 
+    public function regular_test(){
+        $pattern = '~\bA\b~';
+        $str="(A+AB+ABC+(B+BC))*A/B";
+        $out = preg_replace($pattern,$str,'aaaabbc');
+        print_r($out);
+        echo "<br/>";
+        $str ="abcd：efghi：jklm";
+        $r = preg_replace('/([^：]+)：.*/', '$1', $str);
+        echo $r;
+        echo "<br/>";
+        $str = 'ccc{"bbb"{“aaa":"bbb"},{"bb":"cc"}fdddd}eee';
+        echo "<br/><pre>";
+        preg_match('/.*?(?={)/',$str,$out);
+
+        print_r($out);
+        $str = 'aafdf{ee}fdf{bb}d';
+        preg_match('/{(.*?)}/',$str,$out);
+        echo "<br/>";
+        print_r($out);
+        preg_match_all('/{(.*?)}/',$str,$out);
+        print_r($out);
+        $str = '<html><title>hello world</title><body><h1>你好世界</h1><div id="aa">新中国，中国梦</div></body></html>';
+        preg_match_all('/<div.*?>(.*?)<\/div>/i',$str,$out);
+        echo "<br/>";
+        print_r($out);
+        $str = 'fdfdf2343fdf33299ljfdf';
+        preg_match_all('/\d+/',$str,$out);
+        echo "<br/>";
+        print_r($out);
+    }
 
 }
