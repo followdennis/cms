@@ -142,15 +142,11 @@ class AlgorithmController extends Controller
         print_r($data);
         echo "<hr/>";
         $new_data = [];
-        $i = 0;
+
         foreach($data as $k => $v){
             if($v['chinese'] > 80 && $v['math'] > 80 && $v['english'] > 80 ){
                 $v['sum'] = $v['chinese'] + $v['math'] + $v['english'];
                 array_push($new_data,$v);
-                ++$i;
-                if($i == 10){
-                    break;
-                }
             }
         }
         usort($new_data,function($a,$b){
@@ -162,7 +158,73 @@ class AlgorithmController extends Controller
                 return +1;
             }
         });
-        print_r($new_data);
+        print_r(array_slice($new_data,0,10));
     }
+    public function get_sort_data2(){
+        $arr = [
+            'y'=>20,
+            'x'=>[
+                'c'=>11,
+                'b'=>2
+            ],
+            'u'=>25
+        ];
+       uksort($arr,function($a,$b){
+            if($a == $b){
+                return 0;
+            } else if($a > $b){
+                return 1;
+            }else{
+                return -1;
+            }
+       });
+        echo "<pre>";
+        print_r($arr);
+    }
+    public function reverse_str(){
+        $str = 'hello world';
+
+    }
+    //递归遍历生成树结构
+    public function get_tree(){
+        $data = [
+            ['id'=>1,'name'=>'test1','parent_id'=>0],
+            ['id'=>2,'name'=>'test2','parent_id'=>0],
+            ['id'=>3,'name'=>'test3','parent_id'=>1],
+            ['id'=>4,'name'=>'test4','parent_id'=>3],
+            ['id'=>5,'name'=>'test5','parent_id'=>0],
+            ['id'=>6,'name'=>'test6','parent_id'=>2],
+        ];
+        $return = $this->tree1($data);
+        echo "<pre>";
+        print_r($return);
+    }
+    //树结构实现(递归方式)
+    public function tree1($arr,$parent_id = 0){
+        $return = array();//这个必须定义
+        //array_map函数不行 因为他无法过滤数组
+        $children = array_filter($arr,function($item) use($parent_id){
+            return $item['parent_id'] == $parent_id;
+        });//查找到子树
+        foreach($children as $k => $v){
+            $grandson = $this->tree1($arr,$v['id']);
+            $v['children'] = $grandson;
+            array_push($return,$v);
+        }
+        return $return;
+    }
+    //非递归方式实现 只限二维数组  (这个下标应该是主键才可以)
+    public function tree2($items){
+        $tree = array();
+        foreach ($items as $k => $item){
+            if (isset($items[$item['parent_id']])){
+                $items[$item['parent_id']]['children'][] = &$items[$item['id']];
+            } else{
+                $tree[] = $items[$item['id']];
+            }
+        }
+        return $tree;
+    }
+
 
 }

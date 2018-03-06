@@ -278,6 +278,8 @@ Route::group(['prefix'=>'calculate'],function(){
     Route::any('/is_continuity','AlgorithmController@is_continuity');
     Route::any('/name_convert','AlgorithmController@name_convert');
     Route::any('/get_sort_data','AlgorithmController@get_sort_data');//算法，计算学生的成绩排名
+    Route::any('/get_sort_data2','AlgorithmController@get_sort_data2');//算法，计算学生的成绩排名
+    Route::any('/get_tree','AlgorithmController@get_tree');//算法，计算学生的成绩排名
 });
 
 /**
@@ -437,7 +439,7 @@ Route::get('complex_sql5',['uses'=>'CommonSqlController@complex_sql5']);
 
 //常用php 函数
 Route::get('php_function',['uses'=>'PHPCommonFunctionController@php_function']);
-Route::get('php_function2',['uses'=>'PHPCommonFunctionController@php_function2']);
+Route::get('php_str',['uses'=>'PHPCommonFunctionController@php_str']);
 Route::get('php_function3',['uses'=>'PHPCommonFunctionController@php_function3']);
 Route::get('php_function4',['uses'=>'PHPCommonFunctionController@php_function4']);
 Route::get('php_function5',['uses'=>'PHPCommonFunctionController@php_function5']);

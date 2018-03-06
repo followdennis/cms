@@ -30,7 +30,7 @@ class PHPCommonFunctionController extends Controller
         array_change_key_case($data,CASE_UPPER);
         $res = array_chunk($data,2,true);
         $res = array_column($data2,'name','age');
-        $res = array_combine($data,$data2);
+        $res = array_combine($data,$data2);//合并数组 第一个为键 第二个为值
         $res = array_count_values($data);
         $res = array_diff($data,$data3); //前面的一个减去后面的一个 array_diff_assoc() array_diff_key
         $res = array_fill(3,4,'aaa'); //下表为3 填充到7 值为 aaa
@@ -77,9 +77,26 @@ class PHPCommonFunctionController extends Controller
         });
 
 
-
-
         echo "<pre>";
         print_r($data);
+    }
+    public function php_str(){
+        //addslashes 转义
+        //chunk_split //
+        $str = 'abcdefghijklmn';
+        echo chunk_split($str,'2','-');
+        //htmlspecialchars_decode();//转换成html实体
+        //htmlspecialchars() //里面的html标签不会被解析
+        //lcfirst  首字母小写
+        //parse_str()把字符串解析到变量中
+        echo "<br/>";
+        echo str_pad($str,30,'ok',STR_PAD_LEFT);
+        //str_repeat('ok',5);
+        //str_split($str,2);//切分到数组中
+        //stripos();大小写不敏感  strpos 大小写敏感 出现的第一次位置
+        //strrev()  字符串反转
+        //strripos() 字符串在另一字符串出现的最后一次位置 不敏感
+        //strtr($str,'ab','cd'); 字符串中的某个值转换为另一个值
+        //ucfirst  lcfirst
     }
 }
