@@ -255,6 +255,12 @@ class AlgorithmController extends Controller
         preg_match_all('/\d+/',$str,$out);
         echo "<br/>";
         print_r($out);
+        $str = '320393199394340';
+        if(preg_match('/^\d{15}$/',$str)){
+            echo "<br/>ok";
+        }else{
+            echo "fail";
+        }
     }
 
 }

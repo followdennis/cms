@@ -446,4 +446,6 @@ Route::get('php_function4',['uses'=>'PHPCommonFunctionController@php_function4']
 Route::get('php_function5',['uses'=>'PHPCommonFunctionController@php_function5']);
 Route::get('php_function6',['uses'=>'PHPCommonFunctionController@php_function6']);
 
-
+//表格数据插入
+Route::get('table',['uses'=>'TableController@index','as'=>'table']);
+Route::get('table/edit',['uses'=>'TableController@edit','as'=>'table/edit']);
