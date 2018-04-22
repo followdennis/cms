@@ -81,6 +81,28 @@ where parent = ?';
         $sql = 'delete from tb where people_id in (select people_id from tb group by people_id having  count(*) > 0) and id not in
         (select min(id) from tb group by people_id having count(*) > 0)';
     }
+    public function complex_sql5(){
+        //日期天
+        $sql1 = "select date_format(created_time,'%Y-%m-%d') as day from tb_name";
+        //获取时间戳类型
+        $sql2 = "select from_unixtime(create_time,'%Y-%m-%d') from tb_name";
+        //返回多个总数
+        $sql3 = "select count(*) all ,";
+        $sql3 .= " count(case when status = 1 then status end) status_1_num,";
+        $sql3 .= "count(case when status = 2 then status end) status_2_njm";
+        $sql3 .= " from tb_name";
+        //替换某字段的内容
+        $sql4 = "update tb_name set content = replace (content, 'aaa', 'bb') where condi";
+        //获取某字段包含字符串的数据
+        $sql5 = "select * from tb_name where locate('关键字',字段名)";
+        //获取字段中的前思维
+        $sql6 = "select substring(字段名,1,4) from tb_name";
+        //查找表中多余的重复记录
+        $sql7 = "select * from tb_name where 字段名 in ";
+        $sql7 .= "(select 字段名 from tb_name group by 字段名 having count(ziduanming) > 1)";
+        //未完待续
+
+    }
 
     public function complex_sql5(){
         //数据表的基本操作
