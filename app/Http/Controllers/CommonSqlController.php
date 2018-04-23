@@ -100,11 +100,113 @@ where parent = ?';
         //查找表中多余的重复记录
         $sql7 = "select * from tb_name where 字段名 in ";
         $sql7 .= "(select 字段名 from tb_name group by 字段名 having count(ziduanming) > 1)";
-        //未完待续
+        //求数字的连续范围
+        $sql8 = "select min(number) start_range , max(number) end_range from 
+              (
+                select number ,rn,number-rn diff from 
+                (
+                  select number,@number := @number + 1 rn from test_number ,
+                  ( select @number := 0) as number 
+                ) b
+              ) c group by diff";
+
+        //一条语句生成多条测试数据
+        $sql9 = "insert into test_sign_history (uid,create_time) 
+select ceil(rand()*10000),str_to_date('2016-12-11','%Y-%m-%d') + interval ceil( rand()*10000) minute 
+from test_nums where id <31";
+
+        //统计每天每小时的用户签到情况
+        $sql = "select h,sum
+        (
+            case when create_time = '2016-12-11' then c else 0 end
+        ), 11sign ,sum
+        (
+            case when create_time = '2016-12-12' then c else 0 end
+        ) 12sign,,sum
+        (
+            case when create_time = '2016-12-13' then c else 0 end
+        ) 13sign from
+        (
+          select date_format(create_time,'%Y-%m-%d') create_time,
+          hour(create_time) h,
+          count(*) C from test_sign_history 
+          group by 
+          date_format(create_time,'%Y-%m-%d'),
+          hour(create_time)
+        ) a group by h with rollup";
+
+        //统计每天的每小时用户签到情况（当每个小时没有数据是为0）
+        $sql = "select type 
+        sum(case when create_time ='2016-12-11' then c else 0 end) 11sign,
+        sum(case when create_time = '2016-12-12' then c else 0 end) 12sign,
+        sum(case when create_time = '2016-12-13' then c else 0 end) 13sign
+        from (
+          select date_format(create_time ,'%Y-%m-%d') create_time,
+          count(*) c 
+          from test_sign_history
+          group by 
+          date_format(create_time ,'%Y-%m-%d')
+          b 
+          left join
+          (
+            select date_format(create_time,'%Y-%m-%d') create_time,
+            count(*) c 
+            from test_sign_history
+            group by
+            date_format(create_time,'%Y-%m-%d')
+          ) c on (b.create_time =c.create_time + interval 1 day)
+          union all 
+          select date_format(create_time,'%Y-%m-%d') create_time,
+          count(*) c ,'current'
+          from test_sign_history 
+          group by date_format(create_time,'%Y-%m-%d')
+        ) a 
+        group by typeorder by case when type='current' then 1 else 0 end desc";
+
+        //统计每天签到数相同的用户
+        $sql = "select 
+        sum(case when day =1 then cn else 0 end) 1day,
+        sum(case when day =2 then cn else 0 end) 2day,
+        sum(case when day = 3 then cn else 0 end) 3day,
+        sum(case when day = 3 then cn else 0 end) 4day
+        from
+        (
+          select c day ,count(*) cn from
+          (
+            select uid,count(*) c from test_sign_history group by uid
+          ) a 
+          group by c
+        ) b";
+
+        //统计每天签到数相同的用户
+        $sql = "select * from 
+        (
+          select d.*,
+          @ggid := @cggid,
+          @cggid := d.uid,if(@ggid = @cggid, @grank := @grank +1, @grank := 1)
+          grank
+          from 
+          (
+            select uid,min(c.create_time)
+            begin_date , max(c.create_time) end_date,count(*) count from 
+            (
+              select b.*,
+              @gid := @cgid,
+              @cgid := b.uid,if(@gid = @cgid,@rank := @rank + 1,@rank := 1)rank,
+              b.diff -@rank flag FROM (
+                select distinct uid,
+                date_format(create_time,'%Y-%m-%d') create_time,
+                datediff(create_time,now()) diff
+                from test_sign_history order by uid,create_time) b ,
+                (
+                  select @gid :=1,@ci=gid:=1,@rank:=1) as a
+                ) c group by uid,flag order by uid,count(*) desc
+              ) d,(select @ggid := 1, @cggid := 1, @grank :=1) as e
+            ) fwhere grank = 1";
 
     }
 
-    public function complex_sql5(){
+    public function complex_sql6(){
         //数据表的基本操作
         //增加字段
         $sql = 'alter table tb add column new1 varchar(12) default null';
